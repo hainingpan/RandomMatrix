@@ -1,0 +1,9 @@
+alphalist=0:0.001:1;
+enlist=-1:0.001:1;
+enmap=zeros(length(alphalist),length(enlist));
+parfor alphaindex=1:length(alphalist)
+    alpha=alphalist(alphaindex);
+    enmap(alphaindex,:)=arrayfun(@(x)G(x,(1-alpha)*H+alpha*H2,W),enlist); 
+    arrayfun()
+end
+enmap=real(enmap);

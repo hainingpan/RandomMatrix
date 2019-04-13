@@ -1,0 +1,29 @@
+% eigmapf=cell(num,1);
+% eigmaps=cell(num,1);
+% 
+% 
+% % full spectrum
+% for i=1:num
+%     eigmapf{i}=eig(Heff{i});
+% end
+% 
+% % re nearest to 0 spectrum
+% for i=1:num
+%     eigmaps{i}=1./eigs(@(x) Heff{i}\x,length(Heff{1}),2,'be');
+% end
+
+%full spectrum, test nearest to 0. threshold =1e-10
+for i=1:num
+
+figure;
+eigmapmat=cell2mat(eigmap(10));
+re=real(eigmapmat);
+im=imag(eigmapmat);
+scatter(re(:),im(:),'k.');
+xlim([-1,1]);
+% for i=1:num
+%     re=real(eigmap{i});
+%     im=imag(eigmap{i});
+% %     scatter(re,im,'k.')
+% %     hold on
+% end
