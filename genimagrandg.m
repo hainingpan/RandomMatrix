@@ -19,14 +19,14 @@ parfor i=1:length(gamma)
 end
 figure;scatter(cond,log(gamma(2,:)./gamma(1,:)),'.');
 title(sprintf('%d out of %d = %f',length(gamma),num,length(gamma)/num));
-savefig(sprintf('ratio%d.fig',num))
+savefig(sprintf('M%d//Gn%1.1f//ratio%d.fig',m,gamman,num))
 figure;scatter3(gamma(1,:),gamma(2,:),cond,'.');
 title(sprintf('%d out of %d = %f',length(gamma),num,length(gamma)/num));
 xlabel('\gamma_1');
 ylabel('\gamma_2');
 zlabel('G');
-savefig(sprintf('gamma%d.fig',num))
-save(sprintf('num%d.mat',num), '-v7.3');
+savefig(sprintf('M%d//Gn%1.1f//gamma%d.fig',m,gamman,num))
+save(sprintf('M%d//Gn%1.1f//num%d.mat',m,gamman,num), '-v7.3');
 prob=length(gamma)/num;
-save('prob.dat','prob','-ascii');
+save(sprintf('M%d//Gn%1.1f//prob.dat',m,gamman),'prob','-ascii');
 end
