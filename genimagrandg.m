@@ -1,5 +1,5 @@
 function genimagrandg(m,gamman)
-num=100;
+num=100000;
 H={};
 W={};
 gamma=[];
