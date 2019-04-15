@@ -4,7 +4,7 @@ H={};
 W={};
 gamma=[];
 for i=1:num
-    [hh,ww]=hw(10,2);  
+    [hh,ww]=hw(40,2);  
     [flag,hh,ww,gg]=isimag(hh,ww);
     if flag==1
         H{end+1}=hh;
