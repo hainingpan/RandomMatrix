@@ -1,8 +1,8 @@
-countlist=[];
+load('M80/Gn0.4/num100000.mat');
+% countlist=[];
 countmax=0;
-for i=10373:length(H)
-    j=2;
-    if i~=j
+for i=1:length(H)
+    for j=i+1:length(H)
     H1=H{i};
     H2=H{j};
     W1=W{1};
@@ -21,9 +21,9 @@ for i=10373:length(H)
     end
     if  count>countmax
         countmax=count;
-        fprintf("%d->%d:%f\n",i,2,count/length(alphalist));
+        fprintf("%d->%d:%f\n",i,j,count/length(alphalist));
     end
-    countlist=[countlist,count];
+%     countlist=[countlist,count];
     % enmap=real(enmap);
     % figure;
     % surf(alphalist,enlist,enmap'-2,'edgecolor','none');view(2)
