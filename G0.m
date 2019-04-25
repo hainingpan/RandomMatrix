@@ -8,5 +8,4 @@ else
     condlistc=condlist;
 end
 cond=condlistc(ceil(length(condlistc)/2));
-
 end

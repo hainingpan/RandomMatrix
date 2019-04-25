@@ -5,7 +5,7 @@ thr=1e-10;
 if (min(abs(real(eiglist)))<thr)
     flag=1;
     [~,pos]=mink(abs(real(eiglist)),2);
-    im=-imag(eiglist(pos));
+    im=sort(-imag(eiglist(pos)));
 else
     flag=0;
     im=0;
