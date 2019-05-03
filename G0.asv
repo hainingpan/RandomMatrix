@@ -1,7 +1,0 @@
-function cond=G0(T,enlist,condlist)
-flist=exp(enlist/T)./((1+exp(enlist/T)).^2*T);
-flist=1/(4*cosh(enlist/(2*T))*T);
-nor=real(ifft(fft(flist).*fft(ones(1,length(enlist)))));
-condlistc=real(fftshift(ifft(fft(flist).*fft(condlist))))./nor;
-cond=condlistc(ceil(length(condlistc)/2));
-end

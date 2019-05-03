@@ -1,6 +1,6 @@
-H1=H{3};
-H2=H{25};
-H3=H{40};
+H1=H{11};
+H2=H{26};
+H3=H{51};
 W1=ww;
 
 alpha1list=0:0.005:1;
@@ -32,3 +32,5 @@ enmap=real(enmap);
 figure;
 surf(alpha1list,alpha2list,enmap,'edgecolor','none');view(2)
 colorbar
+xlabel('\alpha_1');
+ylabel('\alpha_2');

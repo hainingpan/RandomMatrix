@@ -1,5 +1,5 @@
-H1=H{2};
-H2=H{5434};
+H1=H{1};
+H2=H{10};
 W1=W{1};
 
 alphalist=0:0.005:1;
@@ -15,12 +15,12 @@ for alphaindex=1:length(alphalist)
     eiglist(alphaindex,:)=eig(hh);
     count=count+isimag(hh,W1);
     hheff=heff(hh,W1);
-    eigroot(alphaindex,:)=eig(hheff)
+    eigroot(alphaindex,:)=eig(hheff);
 end
 disp(count/length(alphalist))
 enmap=real(enmap);
 figure;
-surf(alphalist,enlist,enmap'-2,'edgecolor','none');view(2)
+surf(alphalist,enlist,enmap','edgecolor','none');view(2)
+colorbar
 hold on
-plot(alphalist,eiglist,'k');
-ylim([-1,1])
+plot3(alphalist,eiglist,10*ones(length(alphalist),1),'k');ylim([-1,1])
