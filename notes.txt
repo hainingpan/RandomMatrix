@@ -1,0 +1,14 @@
+1.2-d parameter space
+2.measure distance of two norm
+3.gamma1 vs gamma2 vs height
+
+1. prob is not constant
+2. shape of root distribution
+
+3. why always a dip?
+4. prob=sqrt(2)
+5. divergent when Gamma=1, nY more than 2?
+
+1-10373 ->2
+
+to fill the dip, T need to be determined, where side peak should be determined, so why gamma1 == side peak, in N=4,still works??

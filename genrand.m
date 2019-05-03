@@ -1,4 +1,4 @@
-num=10;
+num=100;
 H=cell(num,1);
 W=cell(num,1);
 Heff=cell(num,1);
