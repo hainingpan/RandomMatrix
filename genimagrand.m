@@ -1,10 +1,10 @@
 clear
-num=30000;
+num=1000;
 H={};
 W={};
 gamma={};
 for i=1:num
-    [hh,ww]=hwg(40,4,0.3);  
+    [hh,ww]=hwg(80,4,0.9);  
     [flag,hh,ww,gg]=isimag(hh,ww);
     if flag==1
         H{end+1}=hh;
