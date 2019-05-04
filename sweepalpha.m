@@ -1,5 +1,5 @@
 function sweepalpha(m,gamman)
-num=3;
+num=50;
 H=cell(num,1);
 n=4;
 [~,ww]=hwg(m,n,gamman);  
