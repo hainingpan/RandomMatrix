@@ -2,14 +2,14 @@ clear
 num=10000;
 H={};
 W={};
-gamma=[];
+gamma={};
 for i=1:num
-    [hh,ww]=hwg(40,4,0.7);  
+    [hh,ww]=hwg(40,4,0.1);  
     [flag,hh,ww,gg]=isimag(hh,ww);
     if flag==1
         H{end+1}=hh;
         W{end+1}=ww;
-        gamma=[gamma,sort(gg)];
+        gamma{end+1}=sort(gg);
     end
 end
 % cond=zeros(length(gamma),1);
