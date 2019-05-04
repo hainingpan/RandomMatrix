@@ -1,7 +1,7 @@
 function sweepalpha(m,gamman)
 num=3;
 H=cell(num,1);
-n=4;
+n=2;
 [~,ww]=hwg(m,n,gamman);  
 
 for i=1:num

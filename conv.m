@@ -18,7 +18,7 @@ enlist=-0.1:0.001:2;
 % flist=exp(enlist/T)./((1+exp(enlist/T)).^2*T);
 % nor=real(ifft(fft(flist).*fft(ones(1,length(enlist)))));
 sep=zeros(length(gamma),1);
-for i=1:length(gamma)
+parfor i=1:length(gamma)
 %     condlist=arrayfun(@(x) G(x,H{i},W{i}),-0.05:0.005:0.05);
 %     cond(i)=real(mean(condlist));
     condlist=arrayfun(@(x) G(x,H{i},W{i}),enlist);
@@ -34,10 +34,12 @@ for i=1:length(gamma)
     end
     
 end
-figure;scatter(sep,cellfun(@(x) x(1),gamma))
+figure;scatter(sep,cellfun(@(x) x(1),gamma),'.')
 hold on;
 line([0,max(sep)],[0,max(sep)]);
-
+xlabel("side peak distance to center");
+ylabel("smallest eigenvalue in magnitude");
+title(num2str(length(gamma)));
 % figure;scatter(cond,log(gamma(2,:)./gamma(1,:)),'.');
 % title(sprintf('%d out of %d = %f',length(gamma),num,length(gamma)/num));
 % xlabel('G(e^2/h)');
