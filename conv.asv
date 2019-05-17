@@ -14,11 +14,11 @@
 % end
 % T=0.05;
 cond=zeros(length(gamma),1);
-enlist=-0.1:0.001:2;
+enlist=-0.1:0.01:2;
 % flist=exp(enlist/T)./((1+exp(enlist/T)).^2*T);
 % nor=real(ifft(fft(flist).*fft(ones(1,length(enlist)))));
 sep=zeros(length(gamma),1);
-parfor i=1:16000
+parfor i=1:100
 %     condlist=arrayfun(@(x) G(x,H{i},W{i}),-0.05:0.005:0.05);
 %     cond(i)=real(mean(condlist));
     condlist=arrayfun(@(x) G(x,H{i},W{i}),enlist);
@@ -36,7 +36,7 @@ parfor i=1:16000
 end
 figure;
 % scatter(sep,cellfun(@(x) x(1),gamma),'.') %compability consideration
-scatter(sep,gamma(1,;),'.');
+scatter(sep,gamma(1,1:100),'.');
 hold on;
 line([0,max(sep)],[0,max(sep)]);
 xlabel("side peak distance to center");

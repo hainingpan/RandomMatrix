@@ -1,5 +1,5 @@
-H1=H{16};
-H2=H{31};
+H1=H{30};
+H2=H{40};
 H3=H{49};
 W1=ww;
 % 
@@ -35,6 +35,8 @@ end
 alphalist=0:0.005:1;    
 W1=ww;
 enmap=zeros(length(alphalist),length(enlist));
+enmap1=zeros(length(alphalist),length(enlist));
+
 eigroot=zeros(length(alpha1list),length(H1));
 count=0;
 for alphaindex=1:length(alphalist)
@@ -42,22 +44,39 @@ for alphaindex=1:length(alphalist)
     hh=(1-alpha)*Hi+alpha*Hf;
     condlist=arrayfun(@(x)G(x,hh,W1),enlist); 
     %Finite temperature
-%         [flag,~,~,root]=isimag(hh,W1);
-%             if flag==1
-%                 T=root(1)/(2*0.7717);
-%             else
-%                 T=0;
-%             end      
-%         condlist=GE(T,enlist,condlist);
+    [flag,~,~,root]=isimag(hh,W1);
+        if flag==1
+            T=root(1)/(2*0.7717);
+        else
+            T=0;
+        end      
+    condlist1=GE(T,enlist,condlist);
+    
     enmap(alphaindex,:)=condlist;
+    enmap1(alphaindex,:)=condlist1;
     count=count+isimag(hh,W1);
     hheff=heff(hh,W1);
     eigroot(alphaindex,:)=eig(hheff);
 end
 disp(count/length(alphalist))
 enmap=real(enmap);
+enmap1=real(enmap1);
 figure;
 surf(alphalist,enlist,enmap','edgecolor','none');view(2)
+cb=colorbar;
+title(cb,"G(e^2/h)");
+if hm>vm
+    xlabel("\alpha_1");
+    title(strcat("\alpha_2=",num2str(alpha2list(hpos))));
+else
+    xlabel("\alpha_2");
+    title(strcat("\alpha_1=",num2str(alpha1list(vpos))))
+end
+ylabel("E/\delta_0");
+
+enmap=real(enmap);
+figure;
+surf(alphalist,enlist,enmap1','edgecolor','none');view(2)
 cb=colorbar;
 title(cb,"G(e^2/h)");
 if hm>vm

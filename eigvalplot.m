@@ -1,6 +1,7 @@
-ilist=[1,140,201];
+ilist=[1,55,155];
+colorlist=['b','r','k'];
 figure;
-for i=ilist
+for ind=1:length(ilist)
     % i=201;
 % H1=H{end};
 % W1=W{end};
@@ -10,13 +11,13 @@ for i=ilist
 % eiglist=eig(Heff);
 
 % scatter(real(eiglist(:)),imag(eiglist(:)),'.');
-
+i=ilist(ind);
 if hm>vm
     dispname=(strcat("\alpha_1=",num2str(alpha2list(i)),"\alpha_2=",num2str(alpha1list(hpos))));
 else
     dispname=(strcat("\alpha_1=",num2str(alpha1list(vpos)),"\alpha_2=",num2str(alpha2list(i))));
 end
-scatter(real(eigroot(i,:)),imag(eigroot(i,:)),200,'.','DisplayName',dispname);
+scatter(real(eigroot(i,:)),imag(eigroot(i,:)),200,strcat('.',colorlist(ind)),'DisplayName',dispname);
 grid
 xlim([-1,1])
 hold on
@@ -26,20 +27,22 @@ legend;
 
 hold off
 figure;
-
-for i=ilist
-
+fig=zeros(length(ilist),2);
+for ind=1:length(ilist)
+i=ilist(ind);
 if hm>vm
     dispname=(strcat("\alpha_1=",num2str(alpha2list(i)),"\alpha_2=",num2str(alpha1list(hpos))));
 else
     dispname=(strcat("\alpha_1=",num2str(alpha1list(vpos)),"\alpha_2=",num2str(alpha2list(i))));
 end
-plot(enlist,enmap(i,:),'DisplayName',dispname);
+fig(ind,1)=plot(enlist,enmap(i,:),strcat('-',colorlist(ind)),'DisplayName',dispname);
 xlabel("E/\delta_0");
 ylabel("G(e^2/h)")
 hold on;
+fig(ind,2)=plot(enlist,enmap1(i,:),strcat('--',colorlist(ind)));
 end
-legend
+legend(fig(:,1))
+
 
 
 for i=ilist
