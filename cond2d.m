@@ -1,6 +1,6 @@
-H1=H{30};
-H2=H{40};
-H3=H{49};
+H1=H{4};
+H2=H{44};
+H3=H{45};
 W1=ww;
 
 alpha1list=0:0.005:1;
@@ -36,16 +36,23 @@ disp(count/(length(alpha1list)*length(alpha2list)));
 enmap=real(enmap);
 figure;
 surf(alpha1list,alpha2list, enmap','edgecolor','none');view(2)
+hold on
+contour3(alpha1list,alpha2list, enmap'+10,[11.8,12.2],'k')
+caxis([0,4])
 cb=colorbar;
 title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
 xlabel('\alpha_1');
 ylabel('\alpha_2');
-
+title(sprintf("fraction within 10%% of 2e^2/h: %0.3f",nnz(enmap<2.2&enmap>1.8)/length(enmap)^2));
 %zero T
 enmap0=real(enmap0);
 figure;
 surf(alpha1list,alpha2list,enmap0','edgecolor','none');view(2)
+hold on
+contour3(alpha1list,alpha2list, enmap0'+10,[11.8,12.2],'k')
+caxis([0,4])
 cb=colorbar;
 title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
 xlabel('\alpha_1');
 ylabel('\alpha_2');
+title(sprintf("fraction within 10%% of 2e^2/h: %0.3f",nnz(enmap0<2.2&enmap0>1.8)/length(enmap0)^2));
