@@ -1,0 +1,68 @@
+load('M80/N4/Gn0.4/enmap0.mat')
+alpha1list=0:0.005:1;
+alpha2list=0:0.005:1;
+figure;
+[matcont,valcont]=contour(alpha1list,alpha2list,enmap0',[2,6],'k');
+xlabel('\alpha_1');
+ylabel('\alpha_2');
+matcontx=matcont(1,:);
+matconty=matcont(2,:);
+stopx=matcontx(0<=matcontx&matcontx<=1);
+stopy=matconty(0<=matcontx&matcontx<=1);
+
+
+pinx=.5;
+piny=.5;
+idx=knnsearch([stopx;stopy]',[pinx,piny]);
+nstop=length(stopx);
+
+idxs = nchoosek(1:nstop,2);
+dist = hypot(stopx(idxs(:,1)) - stopx(idxs(:,2)), stopy(idxs(:,1)) - stopy(idxs(:,2)));
+lendist = length(dist);
+Aeq = spones(1:length(idxs)); % Adds up the number of trips
+beq = nstop;
+
+Aeq = [Aeq;spalloc(nstop,length(idxs),nstop*(nstop-1))]; % allocate a sparse matrix
+for ii = 1:nstop
+    whichIdxs = (idxs == ii); % find the trips that include stop ii
+    whichIdxs = sparse(sum(whichIdxs,2)); % include trips where ii is at either end
+    Aeq(ii+1,:) = whichIdxs'; % include in the constraint matrix
+end
+beq = [beq; 2*ones(nstop,1)];
+
+intcon = 1:lendist;
+lb = zeros(lendist,1);
+ub = ones(lendist,1);
+opts = optimoptions('intlinprog','Display','on');
+[x_tsp,costopt,exitflag,output] = intlinprog(dist,intcon,[],[],Aeq,beq,lb,ub,opts);
+
+segments = find(x_tsp);
+idxs1=idxs(:,1);
+idxs2=idxs(:,2);
+idxs1=idxs1(logical(x_tsp));
+idxs2=idxs2(logical(x_tsp));
+grph=graph(idxs1,idxs2);
+adj=adjacency(grph);
+
+starti=idx;
+startj=1;
+path=[starti];
+curi=starti;
+curj=startj;
+nextj=find(adj(curi,1:curj-1));
+if isempty(nextj)
+    nextj=find(adj(curi,curj+1:end),1)+curj;
+end
+curj=curi;
+curi=nextj;
+path=[path,curi];
+while curi~=starti   
+    nextj=find(adj(curi,1:curj-1));
+    if isempty(nextj)
+        nextj=find(adj(curi,curj+1:end))+curj;
+    end
+    curj=curi;
+    curi=nextj;
+    path=[path,curi];
+end
+
