@@ -2,7 +2,7 @@ figure;
 
 load('usborder.mat','x','y','xx','yy');
 rng(2,'twister') % makes a plot with stops in Maine & Florida, and is reproducible
-nStops = 30; % you can use any number, but the problem size scales as N^2
+nStops = 2000; % you can use any number, but the problem size scales as N^2
 stopsLon = zeros(nStops,1); % allocate x-coordinates of nStops
 stopsLat = stopsLon; % allocate y-coordinates
 n = 1;
@@ -19,11 +19,11 @@ plot(x,y,'Color','red'); % draw the outside border
 hold on
 % Add the stops to the map
 plot(stopsLon,stopsLat,'*b')
-
-for ii=1:nStops
-    lbl{ii}=num2str(ii);
-end
-text(stopsLon+0.02,stopsLat+0.02,lbl);
+% 
+% for ii=1:nStops
+%     lbl{ii}=num2str(ii);
+% end
+% text(stopsLon+0.02,stopsLat+0.02,lbl);
 
 idxs = nchoosek(1:nStops,2);
 

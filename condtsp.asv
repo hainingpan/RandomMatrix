@@ -1,7 +1,7 @@
-load('M80/N4/Gn0.9/sweepalpha50.mat','H','ww')
-H1=H{30};
-H2=H{40};
-H3=H{49};
+load('M80/N4/Gn0.1/sweepalpha50.mat','H','ww')
+H1=H{26};
+H2=H{31};
+H3=H{33};
 W1=ww;
 
 
@@ -12,13 +12,9 @@ condmap0=zeros(length(traj),length(enlist));
 % eiglist=zeros(length(alphalist),length(H1));
 % eigroot=zeros(length(alphalist),length(H1));
 % count=0;
-alphalength=zeros(1,length(alphalistx));
-totdist=0;
-alphalength(1)=0;
-for alphaindex=2:length(alphalistx)
-    totdist=totdist+hypot(alphalistx(alphaindex)-alphalistx(alphaindex-1),alphalisty(alphaindex)-alphalisty(alphaindex-1));
-    alphalength(alphaindex)=totdist;
-end
+alphalength=zeros(length(alphalistx),)
+for alphaindex=1:length(alphalistx)
+    
     
 parfor alphaindex=1:length(alphalistx)
     alpha1=alphalistx(alphaindex);
@@ -43,9 +39,6 @@ end
 % disp(count/length(alphalist))
 condmap0=real(condmap0);
 figure;
-surf(alphalength,enlist,condmap0','edgecolor','none');view(2)
-xlabel('distance of \alpha')
+surf(1:length(alphalistx),enlist,condmap0','edgecolor','none');view(2)
 ylabel('E/\delta_0')
-cb=colorbar;
-title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
 axis tight

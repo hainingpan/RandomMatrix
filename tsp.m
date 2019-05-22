@@ -1,4 +1,4 @@
-load('M80/N4/Gn0.1/enmap0.mat')
+load('M80/N4/Gn0.5/enmap0.mat')
 alpha1list=0:0.005:1;
 alpha2list=0:0.005:1;
 figure;
