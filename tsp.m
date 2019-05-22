@@ -1,4 +1,4 @@
-load('M80/N4/Gn0.4/enmap0.mat')
+load('M80/N4/Gn0.1/enmap0.mat')
 alpha1list=0:0.005:1;
 alpha2list=0:0.005:1;
 figure;
@@ -9,12 +9,12 @@ matcontx=matcont(1,:);
 matconty=matcont(2,:);
 stopx=matcontx(0<=matcontx&matcontx<=1);
 stopy=matconty(0<=matcontx&matcontx<=1);
+% 
+% stopx=stopx(1:800);
+% stopy=stopy(1:800);
 
-
-pinx=.5;
-piny=.5;
-idx=knnsearch([stopx;stopy]',[pinx,piny]);
 nstop=length(stopx);
+figure;scatter(stopx,stopy,'.');
 
 idxs = nchoosek(1:nstop,2);
 dist = hypot(stopx(idxs(:,1)) - stopx(idxs(:,2)), stopy(idxs(:,1)) - stopy(idxs(:,2)));
@@ -33,7 +33,8 @@ beq = [beq; 2*ones(nstop,1)];
 intcon = 1:lendist;
 lb = zeros(lendist,1);
 ub = ones(lendist,1);
-opts = optimoptions('intlinprog','Display','iter','Heuristics','advanced');
+opts = optimoptions('intlinprog','Display','iter','HeuristicsMaxNodes',100,'ObjectiveImprovementThreshold',0.1,...
+    'CutMaxIterations',25,'CutGeneration','advanced','BranchRule','strongpscost','RelativeGapTolerance',0.1);
 tic;
 [x_tsp,costopt,exitflag,output] = intlinprog(dist,intcon,[],[],Aeq,beq,lb,ub,opts);
 toc;
@@ -46,9 +47,14 @@ idxs2=idxs2(logical(x_tsp));
 grph=graph(idxs1,idxs2);
 adj=adjacency(grph);
 
+
+pinx=0.3;
+piny=0.4;
+idx=knnsearch([stopx;stopy]',[pinx,piny]);
+
 starti=idx;
 startj=1;
-path=[starti];
+traj=[starti];
 curi=starti;
 curj=startj;
 nextj=find(adj(curi,1:curj-1));
@@ -57,7 +63,7 @@ if isempty(nextj)
 end
 curj=curi;
 curi=nextj;
-path=[path,curi];
+traj=[traj,curi];
 while curi~=starti   
     nextj=find(adj(curi,1:curj-1));
     if isempty(nextj)
@@ -65,6 +71,6 @@ while curi~=starti
     end
     curj=curi;
     curi=nextj;
-    path=[path,curi];
+    traj=[traj,curi];
 end
 
