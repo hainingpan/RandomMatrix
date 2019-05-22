@@ -9,9 +9,9 @@ matcontx=matcont(1,:);
 matconty=matcont(2,:);
 stopx=matcontx(0<=matcontx&matcontx<=1);
 stopy=matconty(0<=matcontx&matcontx<=1);
-
-stopx=stopx(1:600);
-stopy=stopy(1:600);
+% 
+% stopx=stopx(1:800);
+% stopy=stopy(1:800);
 
 nstop=length(stopx);
 figure;scatter(stopx,stopy,'.');
@@ -48,8 +48,8 @@ grph=graph(idxs1,idxs2);
 adj=adjacency(grph);
 
 
-pinx=0.1;
-piny=1;
+pinx=0.22;
+piny=0.77;
 idx=knnsearch([stopx;stopy]',[pinx,piny]);
 
 starti=idx;
@@ -73,4 +73,13 @@ while curi~=starti
     curi=nextj;
     traj=[traj,curi];
 end
+prestart=hypot((pinx-stopx(starti)),(piny-stopy(starti)));
+prenum=ceil(prestart/0.005);
+prex=linspace(pinx,stopx(starti),prenum);
+prey=linspace(piny,stopy(starti),prenum);
+prex=prex(1:end-1);
+prey=prey(1:end-1);
+zbcpx=stopx(traj);
+zbcpy=stopy(traj);
+
 

@@ -48,8 +48,8 @@ grph=graph(idxs1,idxs2);
 adj=adjacency(grph);
 
 
-pinx=0.3;
-piny=0.4;
+pinx=0.5;
+piny=0.7;
 idx=knnsearch([stopx;stopy]',[pinx,piny]);
 
 starti=idx;
@@ -73,4 +73,14 @@ while curi~=starti
     curi=nextj;
     traj=[traj,curi];
 end
+prestart=hypot((pinx-stopx(starti)),(piny-stopy(starti)));
+prenum=ceil(prestart/0.005);
+prex=linspace(pinx,stopx(starti),prenum);
+prey=linspace(piny,stopy(starti),prenum);
+prex=prex(1:end-1);
+prey=prey(1:end-1);
+zbcpx=stopx(traj);
+zbcpy=stopy(traj);
+alphalistx=[prex,zbcpx];
+alphalisty=[prey,zbcpy];
 
