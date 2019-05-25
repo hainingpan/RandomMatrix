@@ -1,14 +1,14 @@
-load('M80/N4/Gn0.9/sweepalpha50.mat','H','ww')
-H1=H{30};
-H2=H{40};
-H3=H{49};
+load('M80/N4/Gn0.2/sweepalpha50.mat','H','ww')
+H1=H{5};
+H2=H{25};
+H3=H{39};
 W1=ww;
 
 
 % alpha1list=0:0.005:1;
 % alpha2list=0:0.005:1;
 enlist=-2:0.01:2;
-condmap0=zeros(length(traj),length(enlist));
+condmap0=zeros(length(alphalistx),length(enlist));
 % eiglist=zeros(length(alphalist),length(H1));
 % eigroot=zeros(length(alphalist),length(H1));
 % count=0;

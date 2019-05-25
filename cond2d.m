@@ -48,11 +48,11 @@ title(sprintf("fraction within 10%% of 2e^2/h: %0.3f",nnz(enmap<2.2&enmap>1.8)/l
 enmap0=real(enmap0);
 figure;
 surf(alpha1list,alpha2list,enmap0','edgecolor','none');view(2)
-hold on
-contour3(alpha1list,alpha2list, enmap0'+10,[11.8,12.2],'k')
 caxis([0,4])
 cb=colorbar;
 title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
 xlabel('\alpha_1');
 ylabel('\alpha_2');
+hold on
+contour3(alpha1list,alpha2list, enmap0'+10,[11.8,12.2],'k')
 title(sprintf("fraction within 10%% of 2e^2/h: %0.3f",nnz(enmap0<2.2&enmap0>1.8)/length(enmap0)^2));
