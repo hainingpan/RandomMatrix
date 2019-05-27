@@ -12,7 +12,7 @@
 % fitlinex=zbcpx(1:end)';
 % fitliney=zbcpy(1:end)';
 % f=polyfit(fitlinex,fitliney,1);
-% alphalistx=linspace(0.8030,fitlinex(end),500);
+% alphalistx=linspace(0.3537,fitlinex(end),500);
 % alphalisty=polyval(f,alphalistx);
 
 
@@ -28,7 +28,7 @@
 fitlinex=zbcpx(1:end)';
 fitliney=zbcpy(1:end)';
 f=polyfit(fitlinex,fitliney,4);
-alphalistx=linspace(0.8,fitlinex(end),500);
+alphalistx=linspace(0.33,fitlinex(end),500);
 alphalisty=polyval(f,alphalistx);
 
 %%polynomial fit (y->x)

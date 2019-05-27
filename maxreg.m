@@ -1,7 +1,9 @@
-ind={[26,31,33],[5,25,39],[16,31,49],[16,31,49],[16,31,49],[16,31,49],[12,20,40],[16,19,29],[30,40,49],[4,44,45]};
+% ind={[26,31,33],[5,25,39],[16,31,49],[16,31,49],[16,31,49],[16,31,49],[12,20,40],[16,19,29],[30,40,49],[4,44,45]};
 %2nd largest:
-%ind={[5,25,39],[26,31,33],[26,31,33]}
-for index=2:3
+ind={[5,25,39],[26,31,33],[26,31,33]};
+%other largest:
+ind={[24,39,46],[10,18,40],[6,12,33]};
+for index=1:3
     fn=sprintf('M80/N4/Gn%.1f/sweepalpha50.mat',index/10)
     load(fn);
     H1=H{ind{index}(1)};
@@ -62,7 +64,7 @@ enmap0=real(enmap0);
 % xlabel('\alpha_1');
 % ylabel('\alpha_2');
 % title(sprintf("fraction within 10%% of 2e^2/h: %0.3f",nnz(enmap0<2.2&enmap0>1.8)/length(enmap0)^2));
-save(strrep(fn,'sweepalpha50','enmap_f'),'enmap','-v7.3');
-save(strrep(fn,'sweepalpha50','enmap0_f'),'enmap0','-v7.3');
+save(strrep(fn,'sweepalpha50','enmap_2_f'),'enmap','-v7.3');
+save(strrep(fn,'sweepalpha50','enmap0_2_f'),'enmap0','-v7.3');
 end
     

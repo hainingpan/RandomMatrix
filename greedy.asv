@@ -11,10 +11,10 @@ matconty=matcont(2,:);
 stopx=matcontx(0<=matcontx&matcontx<=1);
 stopy=matconty(0<=matcontx&matcontx<=1);
 
-pinx=.9551;
-piny=0.4603;
-pin2x=.86194;
-pin2y=0.659;
+pinx=.8422;
+piny=0.5309;
+pin2x=.906;
+pin2y=0.42986;
 % pin2x=pinx;
 % pin2y=piny;
 idx=knnsearch([stopx;stopy]',[pin2x,pin2y]);
