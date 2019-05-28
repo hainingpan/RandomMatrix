@@ -1,7 +1,7 @@
 load('M80/N4/Gn0.3/sweepalpha50.mat','H','ww')
-H1=H{16};
+H1=H{26};
 H2=H{31};
-H3=H{49};
+H3=H{33};
 W1=ww;
 
 
@@ -33,11 +33,10 @@ parfor alphaindex=1:length(alphalistx)
             T=0;
 %         end      
 %     condlist=GE(T,enlist,condlist);
-    
     condmap0(alphaindex,:)=condlist;
 %     eiglist(alphaindex,:)=eig(hh);
 %     count=count+isimag(hh,W1);
-%     hheff=heff(hh,W1);g
+%     hheff=heff(hh,W1);
 %     eigroot(alphaindex,:)=eig(hheff);
 end
 % disp(count/length(alphalist))

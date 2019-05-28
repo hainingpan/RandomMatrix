@@ -12,33 +12,33 @@
 % fitlinex=zbcpx(1:end)';
 % fitliney=zbcpy(1:end)';
 % f=polyfit(fitlinex,fitliney,1);
-% alphalistx=linspace(0.3537,fitlinex(end),500);
+% alphalistx=linspace(0.2823,fitlinex(end),500);
 % alphalisty=polyval(f,alphalistx);
 
 
 %%straight line fit (y->x)
-% fitlinex=zbcpx(1:370)';
-% fitliney=zbcpy(1:370)';
+% fitlinex=zbcpx(1:end)';
+% fitliney=zbcpy(1:end)';
 % f=polyfit(fitliney,fitlinex,1);
-% alphalisty=linspace(0.5,fitliney(end),500);
+% alphalisty=linspace(0.35,fitliney(end),500);
 % alphalistx=polyval(f,alphalisty);
 
 
 % %%polynomial fit (x->y)
 fitlinex=zbcpx(1:end)';
 fitliney=zbcpy(1:end)';
-f=polyfit(fitlinex,fitliney,4);
-alphalistx=linspace(0.33,fitlinex(end),500);
+f=polyfit(fitlinex,fitliney,3);
+alphalistx=linspace(0.3,fitlinex(end),500);
 alphalisty=polyval(f,alphalistx);
 
 %%polynomial fit (y->x)
 % fitlinex=zbcpx(1:end)';
 % fitliney=zbcpy(1:end)';
-% f=polyfit(fitliney,fitlinex,6);
-% alphalisty=linspace(0.7,fitliney(end),500);
+% f=polyfit(fitliney,fitlinex,10);
+% alphalisty=linspace(0.54,fitliney(end),500);
 % alphalistx=polyval(f,alphalisty);
 
 
 %%original contour line
-% alphalistx=[prex,zbcpx(1:300)];
-% alphalisty=[prey,zbcpy(1:300)];
+% alphalistx=[prex,zbcpx(1:330)];
+% alphalisty=[prey,zbcpy(1:330)];
