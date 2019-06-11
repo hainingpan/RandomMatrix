@@ -1,4 +1,4 @@
-load('M80/N4/Gn0.3/sweepalpha50.mat','H','ww')
+% load('M80/N4/Gn0.1/sweepalpha50.mat','H','ww')
 H1=H{26};
 H2=H{31};
 H3=H{33};
@@ -9,7 +9,7 @@ W1=ww;
 % alpha2list=0:0.005:1;
 enlist=-2:0.01:2;
 condmap0=zeros(length(alphalistx),length(enlist));
-% eiglist=zeros(length(alphalist),length(H1));
+eiglist=zeros(length(alphalistx),length(H1));
 % eigroot=zeros(length(alphalist),length(H1));
 % count=0;
 alphalength=zeros(1,length(alphalistx));
@@ -34,7 +34,7 @@ parfor alphaindex=1:length(alphalistx)
 %         end      
 %     condlist=GE(T,enlist,condlist);
     condmap0(alphaindex,:)=condlist;
-%     eiglist(alphaindex,:)=eig(hh);
+    eiglist(alphaindex,:)=eig(hh);
 %     count=count+isimag(hh,W1);
 %     hheff=heff(hh,W1);
 %     eigroot(alphaindex,:)=eig(hheff);
@@ -48,3 +48,7 @@ ylabel('E/\delta_0')
 cb=colorbar;
 title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
 axis tight
+hold on;
+
+% plot3(alphalength,eiglist,10*ones(length(alphalength),1),'k');
+% ylim([-2,2])

@@ -1,44 +1,49 @@
 %%straight line assign
-% x1=0.01;
-% y1=0.719;
-% x2=0.318;
-% y2=0.22188;
+x1=0.4723;
+y1=0.7639;
+x2=0.3200;
+y2=0.9276;
+alphalistx=linspace(x1,x2,500)+0.0;
+alphalisty=linspace(y1,y2,500)+0.0;
 % k=(y2-y1)/(x2-x1);
 % l=@(x) k*(x-x1)+y1;
-% alphalistx=linspace(0.4,x1,100);
+% alphalistx=linspace(x,x1,400);
 % alphalisty=l(alphalistx);
 
 %%straight line fit (x->y)
-% fitlinex=zbcpx(1:end)';
-% fitliney=zbcpy(1:end)';
+% fitlinex=zbcpx(1:206)';
+% fitliney=zbcpy(1:206)';
 % f=polyfit(fitlinex,fitliney,1);
-% alphalistx=linspace(0.2823,fitlinex(end),500);
+% alphalistx=linspace(0.4942,fitlinex(end),500);
 % alphalisty=polyval(f,alphalistx);
 
 
 %%straight line fit (y->x)
-% fitlinex=zbcpx(1:end)';
-% fitliney=zbcpy(1:end)';
+% fitlinex=zbcpx(1:354)';
+% fitliney=zbcpy(1:354)';
 % f=polyfit(fitliney,fitlinex,1);
-% alphalisty=linspace(0.35,fitliney(end),500);
+% alphalisty=linspace(0.4662,fitliney(end),500);
 % alphalistx=polyval(f,alphalisty);
+
+%%straight line shift
+% alphalistx=alphalistx+0.01;
 
 
 % %%polynomial fit (x->y)
-fitlinex=zbcpx(1:end)';
-fitliney=zbcpy(1:end)';
-f=polyfit(fitlinex,fitliney,3);
-alphalistx=linspace(0.3,fitlinex(end),500);
-alphalisty=polyval(f,alphalistx);
+% fitlinex=zbcpx(1:206)';
+% fitliney=zbcpy(1:206)';
+% f=polyfit(fitlinex,fitliney,2);
+% alphalistx=linspace(0.53,fitlinex(end),500);
+% alphalisty=polyval(f,alphalistx);
 
 %%polynomial fit (y->x)
-% fitlinex=zbcpx(1:end)';
-% fitliney=zbcpy(1:end)';
-% f=polyfit(fitliney,fitlinex,10);
-% alphalisty=linspace(0.54,fitliney(end),500);
+% fitlinex=zbcpx(1:288)';
+% fitliney=zbcpy(1:288)';
+% f=polyfit(fitliney,fitlinex,4);
+% alphalisty=linspace(0.2679,fitliney(end),500);
 % alphalistx=polyval(f,alphalisty);
 
 
 %%original contour line
-% alphalistx=[prex,zbcpx(1:330)];
-% alphalisty=[prey,zbcpy(1:330)];
+% alphalistx=[prex,zbcpx(1:354)];
+% alphalisty=[prey,zbcpy(1:354)];

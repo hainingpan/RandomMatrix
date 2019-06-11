@@ -1,4 +1,4 @@
-load('M80/N4/Gn0.3/enmap0_o_f.mat')
+load('M80/N4/Gn0.1/enmap0_f.mat')
 alpha1list=0:0.001:1;
 alpha2list=0:0.001:1;
 figure;
@@ -11,10 +11,10 @@ matconty=matcont(2,:);
 stopx=matcontx(0<=matcontx&matcontx<=1);
 stopy=matconty(0<=matcontx&matcontx<=1);
 
-pinx=.2823;
-piny=0.1868;
-pin2x=.23026;
-pin2y=0.313;
+pinx=.3790;
+piny=0.4662;
+pin2x=.37347;
+pin2y=0.598;
 % pin2x=pinx;
 % pin2y=piny;
 idx=knnsearch([stopx;stopy]',[pin2x,pin2y]);
