@@ -1,5 +1,5 @@
 function sweepalpha_uncorr3(m,gamman)
-num=2;
+num=1000;
 H=cell(num,4);
 n=4;
 [~,ww]=hwg(m,n,gamman);  
@@ -18,15 +18,15 @@ countsave=-1*ones(num,1);
 
 countmax=0;
 for i=1:num
-    tic;disp(i);
+    disp(i);
     H1=H{i,1};
     H2=H{i,2};
     H3=H{i,3};
     H4=H{i,4};
     
-    alpha1list=0:0.01:1;
-    alpha2list=0:0.01:1;
-    alpha3list=0:0.01:1;
+    alpha1list=0:0.02:1;
+    alpha2list=0:0.02:1;
+    alpha3list=0:0.02:1;
     count=0;
     parfor alpha1index=1:length(alpha1list)
         for alpha2index=1:length(alpha2list)
@@ -44,7 +44,6 @@ for i=1:num
         countmax=count;
         fprintf("%d:%f\n",i,count/(length(alpha1list)*length(alpha2list)*length(alpha3list)));
     end      
-    toc;
 end
 prob=mean(countsave(countsave~=-1))/(length(alpha1list)*length(alpha2list)*length(alpha3list));
 save(sprintf('M%d//N%d//Gn%1.1f//probalpha%d_uncorr3.dat',m,n,gamman,num),'prob','-ascii');
