@@ -3,7 +3,7 @@
 % ind={[5,25,39],[26,31,33],[26,31,33]};
 %other largest:
 ind={[24,39,46],[10,18,40],[6,12,33]};
-for index=1:3
+for index=1:1
     fn=sprintf('M80/N4/Gn%.1f/sweepalpha50.mat',index/10)
     load(fn);
     H1=H{ind{index}(1)};
