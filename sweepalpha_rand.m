@@ -41,6 +41,6 @@ for i=1:num
 %     end      
     disp(count/(length(alpha1list)*length(alpha2list)));
     enmap0=real(enmap0);
-    save(sprintf("M80/N4/Gn%.1f/enmap0_rand_%d.mat",gamman,i),'enmap0','-v7.3');
+    save(sprintf("M80/N4/Gn%.1f/enmap0_rand_%d.mat",gamman,i),'-v7.3');
 end
 end
