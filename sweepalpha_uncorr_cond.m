@@ -1,5 +1,5 @@
 function cond=sweepalpha_uncorr_cond(m,gamman)
-num=100;
+num=1000;
 H=cell(num,3);
 n=4;
 [~,ww]=hwg(m,n,gamman);  
@@ -12,8 +12,8 @@ for i=1:num
     H{i,3}=hh;
 end
 
-alpha1list=0:0.001:1;
-alpha2list=0:0.001:1;
+alpha1list=0:0.01:1;
+alpha2list=0:0.01:1;
 cond=zeros(length(alpha1list),length(alpha2list),num);
 for i=1:num
     H1=H{i,1};
