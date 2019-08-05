@@ -14,7 +14,7 @@ end
 
 alpha1list=0:0.01:1;
 alpha2list=0:0.01:1;
-cond=cell(num,1);
+cond=zeros(length(alpha1list),length(alpha2list),num);
 for i=1:num
     H1=H{i,1};
     H2=H{i,2};
@@ -30,7 +30,7 @@ for i=1:num
         end
         condmap(alpha1index,:)=condlist;
     end
-    cond{i}=condmap;   
+    cond(:,:,i)=condmap;   
 end
 save(sprintf("M80/N4/Gn%.1f/cond_ensemble.mat",gamman),'cond','-v7.3');
 end
