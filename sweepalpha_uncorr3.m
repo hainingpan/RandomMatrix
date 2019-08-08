@@ -24,9 +24,9 @@ for i=1:num
     H3=H{i,3};
     H4=H{i,4};
     
-    alpha1list=0:0.01:1;
-    alpha2list=0:0.01:1;
-    alpha3list=0:0.01:1;
+    alpha1list=0:0.1:1;
+    alpha2list=0:0.1:1;
+    alpha3list=0:0.1:1;
     count=0;
     parfor alpha1index=1:length(alpha1list)
         for alpha2index=1:length(alpha2list)
@@ -46,6 +46,7 @@ for i=1:num
     end      
 end
 prob=mean(countsave(countsave~=-1))/(length(alpha1list)*length(alpha2list)*length(alpha3list));
-save(sprintf('M%d//N%d//Gn%1.1f//probalpha%d_uncorr3.dat',m,n,gamman,num),'prob','-ascii');
-save(sprintf('M%d//N%d//Gn%1.1f//sweepalpha%d_uncorr3.mat',m,n,gamman,num), '-v7.3');
+
+save(sprintf('M%d//N%d//Gn%s//probalpha%d_uncorr3.dat',m,n,num2str(gamman),num),'prob','-ascii');
+save(sprintf('M%d//N%d//Gn%s//sweepalpha%d_uncorr3.mat',m,n,num2str(gamman),num), '-v7.3');
 end

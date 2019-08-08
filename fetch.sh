@@ -5,6 +5,6 @@ do
 #	if [ ! -d "$i" ]; then
 #		mkdir "M80/N4/Gn$i"
 #	fi
-	pcd /lustre/hnpan/RandomMatrix/M80/N4/Gn$i/cond_ensemble3.mat ./M80/N4/Gn$i
+	pcd /lustre/hnpan/RandomMatrix/M80/N4/Gn$i/probalpha200_uncorr.dat ./M80/N4/Gn$i
 done
 
