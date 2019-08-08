@@ -1,5 +1,5 @@
 function sweepalpha_uncorr3(m,gamman)
-num=1000;
+num=200;
 H=cell(num,4);
 n=4;
 [~,ww]=hwg(m,n,gamman);  
