@@ -24,9 +24,9 @@ for i=1:num
     H3=H{i,3};
     H4=H{i,4};
     
-    alpha1list=0:0.1:1;
-    alpha2list=0:0.1:1;
-    alpha3list=0:0.1:1;
+    alpha1list=0:0.01:1;
+    alpha2list=0:0.01:1;
+    alpha3list=0:0.01:1;
     count=0;
     parfor alpha1index=1:length(alpha1list)
         for alpha2index=1:length(alpha2list)
