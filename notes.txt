@@ -12,3 +12,11 @@
 1-10373 ->2
 
 to fill the dip, T need to be determined, where side peak should be determined, so why gamma1 == side peak, in N=4,still works??
+
+---28190819---
+short wire, bad/ugly, B=0, 
+
+1.zero B, mu varying
+2. finite B, mu varying, https://arxiv.org/abs/1905.05505
+3. alpha phase diagram find purely imaginary eigenvalues,
+4. class DIII, phase diagram
