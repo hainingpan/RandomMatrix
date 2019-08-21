@@ -20,3 +20,5 @@ short wire, bad/ugly, B=0,
 2. finite B, mu varying, https://arxiv.org/abs/1905.05505
 3. alpha phase diagram find purely imaginary eigenvalues,
 4. class DIII, phase diagram
+
+reconstruct the code, lattice(a,norb=2)
