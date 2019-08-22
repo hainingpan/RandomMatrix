@@ -19,6 +19,13 @@ short wire, bad/ugly, B=0,
 1.zero B, mu varying
 2. finite B, mu varying, https://arxiv.org/abs/1905.05505
 3. alpha phase diagram find purely imaginary eigenvalues,
+Also, as a side project, you should produce some figures using your alpha1-alpha2 class D simulations (add alpha3 only if necessary)  where your simulated ZBP phase diagrams look similar to the figures I sent you from Frolov and Kouwenhoven papers yesterday.  You can tune your parameters freely—the idea is to show that figures like the “experimental ZBP phase diagrams” can be easily reproduced theoretically by tuning parameters.  No need to do tuning here to obtain any quantized ZBPs since these experimental phase diagrams are only for ZBPs.
+Q: v_bias is not symmetric
 4. class DIII, phase diagram
 
 reconstruct the code, lattice(a,norb=2)
+
+conductance_matrix
+adaptive
+see if the local conductance for two leads same as one lead?
+Change nameing rule

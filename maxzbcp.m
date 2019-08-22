@@ -32,7 +32,8 @@ hold on
 contour3(alpha1list,alpha2list, eigmap'+10,[11.8,12.2],'k')
 caxis([0,1])
 cb=colorbar;
-title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
+title(cb,'isZBCP')
+set(cb,'YTick',[0,1])
 xlabel('\alpha_1');
 ylabel('\alpha_2');
 title(sprintf("non-quantized ZBCP fraction:%0.3f",nnz(eigmap)/length(eigmap)^2));
