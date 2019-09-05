@@ -29,7 +29,10 @@ conductance_matrix
 adaptive
 see if the local conductance for two leads same as one lead?
 
+1. is loss function can be 0.0001? -- No
+2. how does author's figure look-- No
+3. how much time does it take for 0.001 and default loss    
+4. how many points are needed 
 
-+last sentence: the random matrix does not only apply to the nanowire but also apply to any platform where time-reversal symmetry and spin rotational symmetry is broken.
+Want to know what does loss do?
 
-+ inset for quantized conductance statistics.
