@@ -24,7 +24,6 @@ for i=1:num
     H3=H{i,3};
     condmap=zeros(length(alpha1list));
     eigvalmap=zeros(length(alpha1list));
-
     count=0;
     parfor alpha1index=1:length(alpha1list)
         alpha1=alpha1list(alpha1index);
@@ -48,7 +47,6 @@ for i=1:num
         countmax=count;
         fprintf("%d:%f\n",i,count/(length(alpha1list)*length(alpha2list)));
     end      
-
 end
 prob=mean(countsave(countsave~=-1))/(length(alpha1list)*length(alpha2list));
 save(sprintf('M%d//N%d//Gn%1.1f//probalpha%d_uncorr.dat',m,n,gamman,num),'prob','-ascii');

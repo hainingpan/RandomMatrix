@@ -36,3 +36,5 @@ see if the local conductance for two leads same as one lead?
 
 Want to know what does loss do?
 
+---quantify robustnes---
+1. use isoperimetric ratio
