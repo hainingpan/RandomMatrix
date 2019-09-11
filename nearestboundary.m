@@ -1,6 +1,9 @@
 ensemblesize=size(eigval,3);
 rmap=zeros(length(alpha1list),length(alpha2list),ensemblesize);
 for index=1:ensemblesize
+    if mod(index,10)==0
+        disp(index)
+    end
     eigmap=eigval(:,:,index);
     [ilist,jlist,klist]=find(eigmap); % i is y-axis, j is x-axis
     [matcont,~]=contour(alpha1list,alpha2list,eigmap,[0.5,1.5],'k');
@@ -35,6 +38,9 @@ end
 
 crit=0;
 condzbcp=(rmap>crit).*(eigval==1).*cond;
+fig=figure;
+scatter(nonzeros(rmap),nonzeros(condzbcp),'.');
+saveas(fig,'R_vs_cond.png');
 % gzbcp=sort(nonzeros(condzbcp(:)));
 % fit=griddedInterpolant(gzbcp,(1:length(gzbcp))/length(gzbcp));
 % glist=linspace(0,4,50);
