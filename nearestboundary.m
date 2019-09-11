@@ -4,7 +4,7 @@ for index=1:ensemblesize
     if mod(index,10)==0
         disp(index)
     end
-    eigmap=eigval(:,:,index);
+    eigmap=eigval(:,:,indelx);
     [ilist,jlist,klist]=find(eigmap); % i is y-axis, j is x-axis
     [matcont,~]=contour(alpha1list,alpha2list,eigmap,[0.5,1.5],'k');
     [idx,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
