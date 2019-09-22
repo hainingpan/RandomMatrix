@@ -13,8 +13,8 @@ n=4;
     H3=hh;
 
 % countsave=-1*ones(num,1);
-alpha1list=0:0.001:1;
-alpha2list=0:0.001:1;
+alpha1list=0:0.01:1;
+alpha2list=0:0.01:1;
 % countmax=0;
 % cond=zeros(length(alpha1list),length(alpha2list),num); %save all conductance map
 % eigval=zeros(length(alpha1list),length(alpha2list),num); %save all conductance map
