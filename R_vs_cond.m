@@ -3,7 +3,7 @@ fig=figure;
 tmpcont=figure;
 crit=0;
 filedir='./M80/N4/Gn0.1/';
-alpha1list=0:0.01:1;
+alpha1list=0:0.001:1;
 alpha2list=alpha1list;
 for index=1:ensemblesize
     if mod(index,10)==0
@@ -22,4 +22,7 @@ for index=1:ensemblesize
     scatter(nonzeros(rmap),nonzeros(condzbcp),'.','k');
     hold on;
 end
+figure(fig);
+xlabel("R");
+ylabel("G(e^2/h)");
 saveas(fig,'R_vs_cond.png');
