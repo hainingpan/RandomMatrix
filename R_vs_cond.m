@@ -19,7 +19,7 @@ for index=1:ensemblesize
     rmap=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
     condzbcp=(rmap>crit).*(eigvalmap==1).*condmap;
     figure(fig);
-    scatter(nonzeros(rmap),nonzeros(condzbcp),'.','k');
+    scatter(nonzeros(rmap),nonzeros(condzbcp),0.1,'k');
     hold on;
 end
 figure(fig);
