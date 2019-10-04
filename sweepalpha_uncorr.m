@@ -34,6 +34,7 @@ for i=1:num
             hh=alpha1*H1+alpha2*H2+(1-alpha1-alpha2)*H3;
             isimagvalue=isimag(hh,ww);
             count=count+isimagvalue;
+%             condmap(alpha1index,alpha2index)=G(0,hh,ww);  
             condlist(alpha2index)=G(0,hh,ww);
             eigvallist(alpha2index)=isimagvalue;
         end
