@@ -10,12 +10,14 @@ Glist=linspace(0,4,400);
 [Rmap,Gmap]=meshgrid(Rlist,Glist);
 PDF=0;
 count=0;
-for index=1:ensemblesize
+parfor index=1:ensemblesize
     if mod(index,10)==0
         disp(index)
     end
-    load(strcat(filedir,'condmap/condmap',num2str(index),'.mat'));
-    load(strcat(filedir,'eigvalmap/eigvalmap',num2str(index),'.mat'));
+    l1=load(strcat(filedir,'condmap/condmap',num2str(index),'.mat'));
+    l2=load(strcat(filedir,'eigvalmap/eigvalmap',num2str(index),'.mat'));
+    condmap=l1.condmap;
+    eigvalmap=l2.eigvalmap;
     [ilist,jlist,klist]=find(eigvalmap); % i is y-axis, j is x-axis
     [matcont,~]=contour(alpha1list,alpha2list,eigvalmap,[0.5,1.5],'k');
      [idx,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
@@ -36,7 +38,7 @@ for index=1:ensemblesize
 %     PDF=PDF+1/pi^2*etaR*etaG.*sum(1./(((Rcube-rmapnnz).^2+etaR^2).*((Gcube-condzbcpnnz).^2+etaG^2)),3);
 %     count=count+length(rmapnnz);
     
-    parfor pindex=1:length(rmapnnz)
+    for pindex=1:length(rmapnnz)
         count=count+1;
         PDF=PDF+1/pi^2*etaG*etaR*(1./((Rmap-rmapnnz(pindex)).^2+etaR^2).*1./((Gmap-condzbcpnnz(pindex)).^2+etaG^2));        
     end
@@ -47,4 +49,4 @@ surf(Rlist,Glist,PDF,'edgecolor','none');view(2);
 xlabel("R");
 ylabel("G(e^2/h)");
 colorbar
-% saveas(fig,'R_vs_cond.png');
+saveas(fig,'R_vs_cond.png');
