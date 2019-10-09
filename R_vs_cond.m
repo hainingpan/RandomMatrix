@@ -2,14 +2,14 @@ ensemblesize=300;
 fig=figure;
 
 for index=1:ensemblesize
-%     if mod(index,10)==0
-% %         disp(index)
-%     end
     F(index)=parfeval(@loaddata,2,index);
 end
 figure(fig);
 for index=1:ensemblesize    
     [completedIdx,rmap,condzbcp]=fetchNext(F);
+    if mod(index,10)==0
+       fprintf("\r %f",index/ensemblesize);
+    end
     scatter(nonzeros(rmap),nonzeros(condzbcp),.1,'k');
     hold on;    
 end
