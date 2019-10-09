@@ -1,4 +1,4 @@
-ensemblesize=100;
+ensemblesize=300;
 fig=figure;
 
 for index=1:ensemblesize
@@ -7,22 +7,20 @@ for index=1:ensemblesize
 %     end
     F(index)=parfeval(@loaddata,2,index);
 end
-h = waitbar(0,'Waiting for FevalFutures to complete...');
 figure(fig);
 for index=1:ensemblesize    
     [completedIdx,rmap,condzbcp]=fetchNext(F);
-    waitbar(index/ensemblesize,h,sprintf('Latest result: %d',completedIdx));
-    scatter(nonzeros(rmap),nonzeros(condzbcp),0.1,'k');
-    hold on;
-    
+    scatter(nonzeros(rmap),nonzeros(condzbcp),.1,'k');
+    hold on;    
 end
 xlabel("R");
 ylabel("G(e^2/h)");
 savefig('R_vs_cond.fig');
 saveas(fig,'R_vs_cond.png');
+% [xx,yy]=loaddata(1);
 
-function [rmap,condzbcp]=loaddata(index)
-crit=0;
+function [rmap2,condzbcp2]=loaddata(index)
+crit=0.06;
 filedir='./M80/N4/Gn0.1/';
 alpha1list=0:0.001:1;
 alpha2list=alpha1list;
@@ -36,4 +34,6 @@ eigvalmap=l2.eigvalmap;
  d=tanh(d);  %scale to [0,1]
 rmap=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
 condzbcp=(rmap>crit).*(eigvalmap==1).*condmap;
+rmap2=nonzeros(rmap(rmap>crit));
+condzbcp2=nonzeros(condzbcp);
 end
