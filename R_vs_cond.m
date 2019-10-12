@@ -1,16 +1,20 @@
-ensemblesize=300;
+ensemblesize=30000;
 fig=figure;
-
+batchsize=10;
 for index=1:ensemblesize
     F(index)=parfeval(@loaddata,2,index);
 end
 figure(fig);
-for index=1:ensemblesize    
-    [completedIdx,rmap,condzbcp]=fetchNext(F);
-    if mod(index,10)==0
-       fprintf("\r %f",index/ensemblesize);
+for index=1:ensemblesize/batchsize
+    for ii=1:batchsize
+        [~,rmap,condzbcp]=fetchNext(F);
+        rmapcell{ii}=rmap';
+        condzbcpcell{ii}=condzbcp';
     end
-    scatter(nonzeros(rmap),nonzeros(condzbcp),.1,'k');
+%     if mod(index,10)==0
+       fprintf("%f\r\n",index/ensemblesize*batchsize);
+%     end
+    scatter([rmapcell{:}],[condzbcpcell{:}],.1,'k','filled');
     hold on;    
 end
 xlabel("R");

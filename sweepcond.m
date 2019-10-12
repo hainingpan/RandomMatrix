@@ -1,9 +1,9 @@
-H1=H{984,1};
-H2=H{984,3};
-% W1=W{1};
+H1=H{2,1};
+H2=H{2,3};
+W1=ww;
 
-alphalist=0:0.001:1;
-enlist=-1:0.001:1;
+alphalist=0:0.01:1;
+enlist=-1:0.01:1;
 enmap=zeros(length(alphalist),length(enlist));
 eiglist=zeros(length(alphalist),length(H1));
 eigroot=zeros(length(alphalist),length(H1));
