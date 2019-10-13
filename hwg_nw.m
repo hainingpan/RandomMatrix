@@ -1,11 +1,11 @@
-function [H,W]=hwg_nw(m,n,gamman,L)
+function [H,W]=hwg_nw(m,n,gamman,L,t0)
 delta0=1;
 Hall=cell(L,1);
 for ii=1:L
     Arand=sqrt(m)*delta0/pi*randn(m);
     Hall{ii}=(1i*(Arand-Arand.')/sqrt(2));  %test is sparse necessary?
 end
-t=delta0*0.5;
+t=delta0*t0;
 H=kron(spdiags(ones(L,2),[-1,1],L,L),t*ones(m))+blkdiag(Hall{:});
 wn=sqrt(m*delta0/(pi^2*gamman)*(2-gamman-2*sqrt(1-gamman)));
 

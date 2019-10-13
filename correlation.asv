@@ -1,5 +1,5 @@
 function [mu,sigma]=correlation(L,t0)
-corlist=zeros(500,1);
+corlist=zeros(300,1);
 corfunchandle=@(x) corfunc(80,4,0.1,x,t0);
 parfor i=1:length(corlist)
     corlist(i)=feval(corfunchandle,L);
