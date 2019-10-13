@@ -1,8 +1,8 @@
-Llist=2:30;
+Llist=2:20;
 
 for i=1:length(Llist)
     disp(i)
-    [mulist(i),muminlist(i),mumaxlist(i)]=correlation(Llist(i));
+    [mulist(i),sigmalist(i)]=correlation(Llist(i));
 end
 
-save('t0sweepL.mat','mulist','muminlist','mumaxlist');
+save('t0.5sweepL.mat','mulist','muminlist','mumaxlist');

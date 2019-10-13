@@ -1,4 +1,4 @@
-function [mu,mumin,mumax]=correlation(L)
+function [mu,sigma]=correlation(L)
 corlist=zeros(300,1);
 corfunchandle=@(x) corfunc(80,4,0.1,x);
 parfor i=1:length(corlist)
@@ -11,9 +11,10 @@ fitresult=fit(x,y,ft,'StartPoint',[0,0.2]);
 coeff=coeffvalues(fitresult);
 mu=coeff(2);
 int95=confint(fitresult);
-mumin=int95(1,2);
-mumax=int95(2,2);
-
+% mumin=int95(1,1);
+% mumax=int95(2,1);
+k=coeff(1);
+sigma=1/(sqrt(2)*k);
 
 function cor=corfunc(m,n,gn,L)
 [H1,W1]=hwg_nw(m,n,gn,L);
