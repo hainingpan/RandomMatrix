@@ -1,6 +1,6 @@
 ensemblesize=30000;
 fig=figure;
-batchsize=10;
+batchsize=100;
 for index=1:ensemblesize
     F(index)=parfeval(@loaddata,2,index);
 end
