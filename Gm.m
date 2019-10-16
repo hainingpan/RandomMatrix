@@ -1,11 +1,11 @@
-function cond=Gm(e,H,W)
+function [cond,Sm,S]=Gm(e,H,W)
 %conductance matrix dI_i/dV_j
 n=size(W,2);
 m=size(W,1);
 % sy=[0,-1i;1i,0];
-S=eye(n)+2*pi*1i*W.'*((H-1i*pi*(W*W.')-e*eye(m))\W);
+Sm=eye(n)+2*pi*1i*W.'*((H-1i*pi*(W*W.')-e*eye(m))\W); %S in Majorana basis
 U=kron(eye(n/4),kron(sqrt(1/2)*[1,1;1i,-1i],eye(n/4)));
-S=U'*S*U;
+S=U'*Sm*U; % S in particle hole basis
 cond=zeros(2);
 ree=cell(2);
 rhe=cell(2);

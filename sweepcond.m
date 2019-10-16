@@ -2,6 +2,8 @@ H1=H{2,1};
 H2=H{2,3};
 W1=ww;
 
+
+
 alphalist=0:0.01:1;
 enlist=-1:0.01:1;
 enmap=zeros(length(alphalist),length(enlist));

@@ -1,6 +1,6 @@
-corlist=zeros(300,1);
+corlist=zeros(500,1);
 parfor i=1:length(corlist)
-    corlist(i)=corfunc(80,4,0.1,5);
+    corlist(i)=corfunc(80,4,0.1,5,1);
 end
 figure;
 hist=histogram(corlist,linspace(-1,1,20),'Normalization','probability');
@@ -23,8 +23,8 @@ plot(gaussianx,gaussiany/(max(gaussiany)/max(hist.Values)));
 title(sprintf('System parameters:$t=\\delta_0$,$L=5$\nGaussian Fitting Parameters:$\\sigma$=%.3f,$\\mu$=%.3f',sigma,mu),'Interpreter','latex');
 
 
-function cor=corfunc(m,n,gn,L)
-[H1,W1]=hwg_nw(m,n,gn,L);
+function cor=corfunc(m,n,gn,L,t)
+[H1,W1]=hwg_nw(m,n,gn,L,t);
 enlist=-5:5e-2:5;
 condlist=arrayfun(@(x) Gm(x,H1,W1),enlist,'UniformOutput',false); 
 condmat=cat(3,condlist{:});
