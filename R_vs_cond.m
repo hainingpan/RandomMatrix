@@ -1,8 +1,8 @@
 ensemblesize=10000;
-fig=figure;
+% fig=figure;
 batchsize=100;
-for index=30001:ensemblesize+30001
-    F(index)=parfeval(@loaddata,2,index);
+for index=1:ensemblesize
+    F(index)=parfeval(@loaddata,2,index+30000);
 end
 % figure(fig);
 openfig('R_vs_cond.fig');
