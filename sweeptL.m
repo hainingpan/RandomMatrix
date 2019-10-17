@@ -7,5 +7,5 @@ for i=1:length(Llist)
     [mulist(i),sigmalist(i)]=correlation(Llist(i),t0);
 end
 savelist=[mulist,sigmalist];
-save(strcat('t',num2str(t0),'sweepL.mat'),'savelist','-ascii');
+save(strcat('t',num2str(t0),'sweeptL.dat'),'savelist','-ascii');
 end

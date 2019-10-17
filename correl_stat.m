@@ -1,6 +1,6 @@
 corlist=zeros(500,1);
 parfor i=1:length(corlist)
-    corlist(i)=corfunc(80,4,0.1,5,1);
+    corlist(i)=corfunc(80,4,0.1,2,0.5);
 end
 figure;
 hist=histogram(corlist,linspace(-1,1,20),'Normalization','probability');
@@ -20,7 +20,7 @@ gaussianx=-1:0.01:1;
 gaussiany=k/sqrt(pi)*exp(-k^2.*(gaussianx-mu).^2);
 hold on;
 plot(gaussianx,gaussiany/(max(gaussiany)/max(hist.Values)));
-title(sprintf('System parameters:$t=\\delta_0$,$L=5$\nGaussian Fitting Parameters:$\\sigma$=%.3f,$\\mu$=%.3f',sigma,mu),'Interpreter','latex');
+title(sprintf('System parameters:$t=\\delta_0$,$L=10$\nGaussian Fitting Parameters:$\\sigma$=%.3f,$\\mu$=%.3f',sigma,mu),'Interpreter','latex');
 
 
 function cor=corfunc(m,n,gn,L,t)
