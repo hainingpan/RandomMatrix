@@ -1,10 +1,11 @@
-ensemblesize=30000;
+ensemblesize=10000;
 fig=figure;
 batchsize=100;
-for index=1:ensemblesize
+for index=30001:ensemblesize
     F(index)=parfeval(@loaddata,2,index);
 end
-figure(fig);
+% figure(fig);
+openfig('R_vs_cond.fig');
 for index=1:ensemblesize/batchsize
     for ii=1:batchsize
         [~,rmap,condzbcp]=fetchNext(F);
