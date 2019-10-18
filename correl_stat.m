@@ -1,6 +1,6 @@
 corlist=zeros(500,1);
 parfor i=1:length(corlist)
-    corlist(i)=corfunc(80,4,0.1,2,0.5);
+    corlist(i)=corfunc(80,4,0.1,2,-1);
 end
 figure;
 hist=histogram(corlist,linspace(-1,1,20),'Normalization','probability');

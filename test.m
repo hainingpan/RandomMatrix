@@ -14,6 +14,6 @@ title(sprintf('correlation=%.4f\nLength=%d',cor(1,2),L));
 xlabel('Energy');
 ylabel('$G(\frac{e^2}{h})$','Interpreter','latex');
 legend;
-savefig(gcf,'D:\CMTC\Rp_RM\Rp13\t1L5_1.fig');
-saveas(gcf,'D:\CMTC\Rp_RM\Rp13\t1L5_1.png');
+% savefig(gcf,'D:\CMTC\Rp_RM\Rp13\t1L5_1.fig');
+% saveas(gcf,'D:\CMTC\Rp_RM\Rp13\t1L5_1.png');
 
