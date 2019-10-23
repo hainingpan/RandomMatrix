@@ -1,5 +1,5 @@
-L=5;
-[H1,W1]=hwg_nw(80,4,0.1,L,1);
+L=10;
+[H1,W1]=hwg_nw(80,4,0.1,L,.1);
 figure;
 hold on
 enlist=-1:1e-2:1;

@@ -1,4 +1,4 @@
-[H0,W0]=hwg(800,4,0.1);
+[H0,W0]=hwg(80,4,0.2);
 figure;
 hold on
 enlist=-1:1e-2:1;
