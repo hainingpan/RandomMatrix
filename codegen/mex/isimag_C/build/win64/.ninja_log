@@ -1,0 +1,22 @@
+# ninja log v5
+12	281	593577753	build/win64/warning.obj	be8355582c7f88b7
+7	287	593577753	build/win64/isimag_C_data.obj	ba369c3a82e0f607
+23	339	593577753	build/win64/_coder_isimag_C_info.obj	b62135b04878134d
+1	350	593577753	build/win64/isimag_C_initialize.obj	f5ce8705937b3c0
+28	496	593577753	build/win64/_coder_isimag_C_api.obj	487834f99c0b16a4
+33	538	593577753	build/win64/abs.obj	c3db566a972ac740
+281	902	593577753	build/win64/_coder_isimag_C_mex.obj	a66e5e9448200cc1
+351	1032	593577753	build/win64/ishermitian.obj	e3987aa4fcc53ea5
+496	1039	593577753	build/win64/isimag_C.obj	c70e6350cf7716ef
+339	1135	593577753	build/win64/xgeev.obj	f29108caa3b71b84
+539	1145	593577753	build/win64/anyNonFinite.obj	d2956ac018932dac
+287	1174	593577753	build/win64/schur.obj	de83bdba48fc3181
+902	1430	593577754	build/win64/isimag_C_terminate.obj	5cfa36f6f0c282df
+1146	1580	593577754	build/win64/infocheck.obj	6bb6824bc1c6e2e4
+1040	1587	593577754	build/win64/eig.obj	16bd319713b77421
+1032	1598	593577754	build/win64/triu.obj	db6d685c2296770a
+1135	1627	593577754	build/win64/xgehrd.obj	83067c3175b8ed40
+1174	1655	593577754	build/win64/xhseqr.obj	248933f4691cf298
+1430	1727	593577754	build/win64/xdlanv2.obj	61a787fd11d43d27
+1581	1758	593577754	build/win64/c_mexapi_version.obj	21c827cc0f7a0d5e
+1758	1889	593577754	isimag_C_mex.mexw64	7186c78afd8e07b3

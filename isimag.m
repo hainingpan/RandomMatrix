@@ -1,6 +1,12 @@
 function [flag,H,W,im]=isimag(H,W)
+%Here the trick is make Heff real(assuming Heff is purely imaginary) and
+%then multiplied by a i to rotate the spectrum back.
+
 Heff=heff(H,W);
-eiglist=eig(Heff);
+Heff_real=imag(Heff);
+
+eiglist=eig(Heff_real);
+eiglist=1i*eiglist;
 thr=1e-10;
 
 if (min(abs(real(eiglist)))<thr)

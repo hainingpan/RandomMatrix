@@ -7,9 +7,12 @@ for ii=1:L
     Hall{ii}=(1i*(Arand-Arand.')/sqrt(2));  %test is sparse necessary?
 end
 t=delta0*t0;
-T=blkdiag(t*ones(m/2),-t*ones(m/2)); %T in particle-hole basis
-U=kron(sqrt(1/2)*[1,1;1i,-1i],eye(m/2));
-T=U*T*U'; %T in majorana basis
+% T=blkdiag(t*ones(m/2),-t*ones(m/2)); %T in particle-hole basis
+% U=kron(sqrt(1/2)*[1,1;1i,-1i],eye(m/2));
+% T=U*T*U'; %T in majorana basis
+
+T=kron([0,-1i;1i,0],t*ones(m/2)); %directly construct T in Majorana basis
+
 H=kron(spdiags(ones(L,2),[-1,1],L,L),T)+blkdiag(Hall{:});
 wn=sqrt(m*delta0/(pi^2*gamman)*(2-gamman-2*sqrt(1-gamman)));
 

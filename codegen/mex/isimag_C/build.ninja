@@ -1,0 +1,61 @@
+# CompilerName=msvc150
+# Mode=optim
+ninja_required_version = 1.3
+
+# Basic folders
+root = .
+builddir = $root\build\win64
+matlabdir = C:\Program Files\MATLAB\R2019a
+startdir = D:\CMTC\RandomMatrix
+
+# Toolchain information
+cc = cl
+cxx = cl
+linker = link
+linkerxx = link
+
+cflags =  /c /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /I "$root" /I "$startdir" /I "$root\interface" /I "$matlabdir\extern\include" /I "." -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS  
+
+cxxflags =   /c /Zp8 /GR /W3 /EHs /nologo /MD /D_CRT_SECURE_NO_DEPRECATE /D_SCL_SECURE_NO_DEPRECATE /D_SECURE_SCL=0   /DMATLAB_MEX_FILE  /DMATLAB_MEX_FILE /O2 /Oy- /DNDEBUG /fp:strict /I "$root" /I "$startdir" /I "$root\interface" /I "$matlabdir\extern\include" /I "." -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS  
+
+ldflags =  /nologo /manifest   /DLL /LIBPATH:"$matlabdir\extern\lib\win64\microsoft" libmx.lib libmex.lib libmat.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib  /out:"isimag_C_mex.mexw64" /LIBPATH:"$matlabdir\extern\lib\win64\microsoft" libmwlapack.lib libmwblas.lib  libemlrt.lib libcovrt.lib libut.lib libmwmathutil.lib /export:mexFunction /export:mexfilerequiredapiversion /export:emlrtMexFcnProperties /export:isimag_C /export:isimag_C_initialize /export:isimag_C_terminate /export:isimag_C_atexit
+
+# Build Rules
+rule cc
+    command = $cc $cflags $in /Fo$out
+
+rule cxx
+    command = $cxx $cxxflags $in /Fo$out
+
+rule link
+    command = $linker @$out.rsp
+    rspfile = $out.rsp
+    rspfile_content = $in $ldflags
+
+rule linkxx
+    command = $linkerxx $in $ldflags
+
+# Build
+build $builddir\isimag_C_data.obj : cc $root\isimag_C_data.c
+build $builddir\isimag_C_initialize.obj : cc $root\isimag_C_initialize.c
+build $builddir\isimag_C_terminate.obj : cc $root\isimag_C_terminate.c
+build $builddir\isimag_C.obj : cc $root\isimag_C.c
+build $builddir\eig.obj : cc $root\eig.c
+build $builddir\anyNonFinite.obj : cc $root\anyNonFinite.c
+build $builddir\ishermitian.obj : cc $root\ishermitian.c
+build $builddir\schur.obj : cc $root\schur.c
+build $builddir\triu.obj : cc $root\triu.c
+build $builddir\xgehrd.obj : cc $root\xgehrd.c
+build $builddir\infocheck.obj : cc $root\infocheck.c
+build $builddir\abs.obj : cc $root\abs.c
+build $builddir\xhseqr.obj : cc $root\xhseqr.c
+build $builddir\xdlanv2.obj : cc $root\xdlanv2.c
+build $builddir\warning.obj : cc $root\warning.c
+build $builddir\xgeev.obj : cc $root\xgeev.c
+build $builddir\_coder_isimag_C_info.obj : cc $root\interface\_coder_isimag_C_info.c
+build $builddir\_coder_isimag_C_api.obj : cc $root\interface\_coder_isimag_C_api.c
+build $builddir\_coder_isimag_C_mex.obj : cc $root\interface\_coder_isimag_C_mex.c
+build $builddir\c_mexapi_version.obj : cc $matlabdir\extern\version\c_mexapi_version.c
+
+# Link
+build $root\isimag_C_mex.mexw64 : link $builddir\isimag_C_data.obj $builddir\isimag_C_initialize.obj $builddir\isimag_C_terminate.obj $builddir\isimag_C.obj $builddir\eig.obj $builddir\anyNonFinite.obj $builddir\ishermitian.obj $builddir\schur.obj $builddir\triu.obj $builddir\xgehrd.obj $builddir\infocheck.obj $builddir\abs.obj $builddir\xhseqr.obj $builddir\xdlanv2.obj $builddir\warning.obj $builddir\xgeev.obj $builddir\_coder_isimag_C_info.obj $builddir\_coder_isimag_C_api.obj $builddir\_coder_isimag_C_mex.obj $builddir\c_mexapi_version.obj 

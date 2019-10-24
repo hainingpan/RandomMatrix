@@ -13,6 +13,7 @@ eigvalmap=zeros(length(alpha1list));
 
 len1=length(alpha1list);
 len2=length(alpha2list);
+
 parfor alpha1index=1:len1
     alpha1=alpha1list(alpha1index);
     alpha2list=0:step:1;
@@ -24,6 +25,7 @@ parfor alpha1index=1:len1
         eigvalmap(alpha1index,alpha2index)=isimag(hh,ww);
     end
 end
+
 save(sprintf('M%d//N%d//Gn%1.1f//eigvalmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'eigvalmap', '-v7.3');
 save(sprintf('M%d//N%d//Gn%1.1f//condmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'condmap', '-v7.3');
 
