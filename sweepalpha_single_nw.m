@@ -4,7 +4,7 @@ n=4;
 [H1,ww]=hwg_nw(m,n,gamman,L,t0);    
 [H2,~]=hwg_nw(m,n,gamman,L,t0);    
 [H3,~]=hwg_nw(m,n,gamman,L,t0);  
-step=0.005;
+step=0.001;
 alpha1list=0:step:1;
 alpha2list=0:step:1;
 condmap=zeros(length(alpha1list),length(alpha1list),4); %GLL,GLR,GRL,GRR
@@ -32,6 +32,7 @@ end
 
 save(sprintf('M%d//N%d//Gn%1.1f//eigvalmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'eigvalmap', '-v7.3');
 save(sprintf('M%d//N%d//Gn%1.1f//condmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'condmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//imagmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'imagmap', '-v7.3');
 
 % save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
 % save(sprintf('M%d//N%d//Gn%1.1f//condmap%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
