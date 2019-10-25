@@ -1,5 +1,5 @@
-t=0.5;
-L=5;
+t=1;
+L=20;
 load(sprintf('./M80/N4/Gn0.1/condmapt%.2fL%d_1.mat',t,L))
 load(sprintf('./M80/N4/Gn0.1/eigvalmapt%.2fL%d_1.mat',t,L))
 alpha1list=linspace(0,1,size(condmap,1));
