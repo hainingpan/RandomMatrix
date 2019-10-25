@@ -1,0 +1,35 @@
+function [flag,H,W,im]=isimag_sp(H,W)
+%Here the trick is make Heff real(assuming Heff is purely imaginary) and
+%then multiplied by a i to rotate the spectrum back.
+
+
+Heff=heff(H,W);
+Heff_real=imag(Heff);
+cutoff=pi*W(1)^2;
+
+eiglist=eigs(Heff_real,20,-cutoff/2);%The criteria now becomes eigenvalues with zero imag
+thr=1e-10;
+
+if (min(abs(imag(eiglist)))<thr)
+    flag=1;
+    imeig=real(eiglist);
+    im=sort(imeig(abs(imag(eiglist))<thr));
+else
+    flag=0;
+    im=0;
+end
+
+while (cutoff>max(abs(eiglist)) && flag==0)  
+    eiglist=eigs(Heff_real,20,-max(abs(eiglist)));
+
+    if (min(abs(imag(eiglist)))<thr)
+        flag=1;
+        imeig=real(eiglist);
+        im=sort(imeig(abs(imag(eiglist))<thr));
+    else
+        flag=0;
+        im=0;
+    end
+end
+end
+    
