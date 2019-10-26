@@ -1,10 +1,10 @@
-function [condmap,eigvalmap,immap]=sweepalpha_single_nw(m,gamman,L,t0,seed)
+function [condmap,eigvalmap,immap]=sweepalpha_single_nw(m,gamman,L,t0,k,seed)
 rng(seed);
 n=4;
 [H1,ww]=hwg_nw(m,n,gamman,L,t0);    
 [H2,~]=hwg_nw(m,n,gamman,L,t0);    
 [H3,~]=hwg_nw(m,n,gamman,L,t0);  
-step=0.001;
+step=0.05;
 alpha1list=0:step:1;
 alpha2list=0:step:1;
 condmap=zeros(length(alpha1list),length(alpha1list),4); %GLL,GLR,GRL,GRR
@@ -24,15 +24,15 @@ parfor alpha1index=1:len1
         hh=alpha1*H1+alpha2*H2+(1-alpha1-alpha2)*H3;
         condmat=Gm(0,hh,ww);
         condmap(alpha1index,alpha2index,:)=condmat(:);
-        [eigval,~,~,im]=isimag_sp(hh,ww);
+        [eigval,~,~,im]=isimag_benchmark(hh,ww,k);
         eigvalmap(alpha1index,alpha2index)=eigval;
         immap{alpha1index,alpha2index}=im.';
     end
 end
 
-save(sprintf('M%d//N%d//Gn%1.1f//eigvalmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'eigvalmap', '-v7.3');
-save(sprintf('M%d//N%d//Gn%1.1f//condmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'condmap', '-v7.3');
-save(sprintf('M%d//N%d//Gn%1.1f//imagmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'imagmap', '-v7.3');
+% save(sprintf('M%d//N%d//Gn%1.1f//eigvalmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'eigvalmap', '-v7.3');
+% save(sprintf('M%d//N%d//Gn%1.1f//condmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'condmap', '-v7.3');
+% save(sprintf('M%d//N%d//Gn%1.1f//imagmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'imagmap', '-v7.3');
 
 % save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
 % save(sprintf('M%d//N%d//Gn%1.1f//condmap%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
