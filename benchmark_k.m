@@ -1,8 +1,9 @@
 clear
 k=40;
 for i=1:k
+    fprintf("\r%d",i);
     st{i}=tic;
-    [condmap{i},eigvalmap{i},immap{i}]=sweepalpha_single_nw(80,0.1,10,0.5,i,2);
+    [condmap{i},eigvalmap{i},immap{i}]=sweepalpha_single_nw(80,0.1,20,0.5,i,2);
     elapse(i)=toc(st{i});
 end
 
