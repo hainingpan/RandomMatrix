@@ -13,7 +13,7 @@ eigvalmap=zeros(length(alpha1list));
 
 len1=length(alpha1list);
 len2=length(alpha2list);
-immap=cell(length(alpha1list));
+% immap=cell(length(alpha1list));
 
 k=optimalk(t0,L);
 parfor alpha1index=1:len1
@@ -26,14 +26,14 @@ parfor alpha1index=1:len1
         hh=alpha1*H1+alpha2*H2+(1-alpha1-alpha2)*H3;
         condmat=Gm(0,hh,ww);
         condmap(alpha1index,alpha2index,:)=condmat(:);
-        [eigval,~,~,im]=isimag_benchmark(hh,ww,k);
+        [eigval,~,~,~]=isimag_benchmark(hh,ww,k);
         eigvalmap(alpha1index,alpha2index)=eigval;
-        immap{alpha1index,alpha2index}=im.';
+%         immap{alpha1index,alpha2index}=im.';
     end
 end
 
-% save(sprintf('M%d//N%d//Gn%1.1f//eigvalmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'eigvalmap', '-v7.3');
-% save(sprintf('M%d//N%d//Gn%1.1f//condmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'condmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//eigvalmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'eigvalmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//condmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'condmap', '-v7.3');
 % save(sprintf('M%d//N%d//Gn%1.1f//imagmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'imagmap', '-v7.3');
 
 % save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
