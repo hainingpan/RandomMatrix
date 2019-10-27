@@ -1,10 +1,10 @@
-function [condmap,eigvalmap,immap]=sweepalpha_single_nw(m,gamman,L,t0,k,seed)
+function [condmap,eigvalmap,immap]=sweepalpha_single_nw(m,gamman,L,t0,seed)
 rng(seed);
 n=4;
 [H1,ww]=hwg_nw(m,n,gamman,L,t0);    
 [H2,~]=hwg_nw(m,n,gamman,L,t0);    
 [H3,~]=hwg_nw(m,n,gamman,L,t0);  
-step=0.05;
+step=0.001;
 alpha1list=0:step:1;
 alpha2list=0:step:1;
 condmap=zeros(length(alpha1list),length(alpha1list),4); %GLL,GLR,GRL,GRR
@@ -14,6 +14,8 @@ eigvalmap=zeros(length(alpha1list));
 len1=length(alpha1list);
 len2=length(alpha2list);
 immap=cell(length(alpha1list));
+
+k=optimalk(t0,L);
 parfor alpha1index=1:len1
     warning('off','all');
     alpha1=alpha1list(alpha1index);

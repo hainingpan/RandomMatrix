@@ -1,18 +1,19 @@
 clear
+start=10;
 k=30;
-for i=10:k
+for i=start:k
     fprintf("\r%d",i);
     st{i}=tic;
-    [condmap{i},eigvalmap{i},immap{i}]=sweepalpha_single_nw(80,0.1,15,0.5,i,2);
+    [condmap{i},eigvalmap{i},immap{i}]=sweepalpha_single_nw(80,0.1,20,1,i,783);
     elapse(i)=toc(st{i});
 end
 
 figure;
-plot(elapse);
-[mm,ind]=min(elapse);
-title(strcat('min=',num2str(ind)));
+plot(start:k,elapse(start:k));
+[mm,ind]=min(elapse(start:k));
+title(strcat('min=',num2str(ind+start-1)));
 
-for i=10:k-1
+for i=start:k-1
     errcondmap=condmap{i}-condmap{i+1};
     erreigvalmap=eigvalmap{i}-eigvalmap{i+1};
 %     errimmap=[immap{i}{:}]-[immap{i+1}{:}];

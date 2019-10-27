@@ -1,10 +1,10 @@
 clear
-start=10;
-k=30;
+start=1;
+k=10;
 for i=start:k
     fprintf("\r%d",i);
     st{i}=tic;
-    [condmap{i},eigvalmap{i},immap{i}]=sweepalpha_single_nw(80,0.1,15,0.5,i,2);
+    [condmap{i},eigvalmap{i},immap{i}]=sweepalpha_single_nw(80,0.1,3,0.5,i,982214);
     elapse(i)=toc(st{i});
 end
 
