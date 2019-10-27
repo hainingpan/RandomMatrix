@@ -1,7 +1,6 @@
 clear
-start=10;
 k=30;
-for i=start:k
+for i=10:k
     fprintf("\r%d",i);
     st{i}=tic;
     [condmap{i},eigvalmap{i},immap{i}]=sweepalpha_single_nw(80,0.1,15,0.5,i,2);
@@ -9,11 +8,11 @@ for i=start:k
 end
 
 figure;
-plot(start:k,elapse(start:k));
-[mm,ind]=min(elapse(start:k));
-title(strcat('min=',num2str(ind+start-1)));
+plot(elapse);
+[mm,ind]=min(elapse);
+title(strcat('min=',num2str(ind)));
 
-for i=start:k-1
+for i=10:k-1
     errcondmap=condmap{i}-condmap{i+1};
     erreigvalmap=eigvalmap{i}-eigvalmap{i+1};
 %     errimmap=[immap{i}{:}]-[immap{i+1}{:}];
