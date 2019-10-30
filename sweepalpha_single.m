@@ -12,7 +12,7 @@ eigvalmap=zeros(length(alpha1list));
 
 len1=length(alpha1list);
 len2=length(alpha2list);
-for alpha1index=1:len1
+parfor alpha1index=1:len1
     alpha1=alpha1list(alpha1index);
     alpha2list=0:step:1;
     for alpha2index=1:len2
@@ -36,6 +36,6 @@ end
 %     condmap(alpha1index,:)=condlist;
 %     eigvalmap(alpha1index,:)=eigvallist;
 % end
-% save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
-% save(sprintf('M%d//N%d//Gn%1.1f//condmap%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//condmap%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
 end
