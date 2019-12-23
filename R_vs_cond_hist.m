@@ -1,32 +1,34 @@
-ensemblesize=100;
+function R_vs_cond_hist(crit)
+ensemblesize=50000;
 % fig=figure;
-batchsize=10;
-crit=0;
+batchsize=100;
+% crit=0;
 for index=1:ensemblesize
-    F(index)=parfeval(@loaddata,2,index+30000,crit);
+    F(index)=parfeval(@loaddata,2,index+0,crit);
 end
-figure(fig);
+fig=figure();
 % fig=openfig('R_vs_cond.fig');
 num_all=0;
 for index=1:ensemblesize/batchsize
     for ii=1:batchsize
-        [~,rmap,condzbcp]=fetchNext(F);
-        rmapcell{ii}=rmap';
-        condzbcpcell{ii}=condzbcp';
+        [~,rmap1,condzbcp1]=fetchNext(F);
+        rmapcell{ii}=rmap1';
+        condzbcpcell{ii}=condzbcp1';
     end
        fprintf("%f\r\n",index/ensemblesize*batchsize);
 %     scatter([rmapcell{:}],[condzbcpcell{:}],.1,'k','filled');
 %     hold on;    
-    edges=0:0.5:4;
-    [num,~]=histcount(condzbcpcell{:},edges);
+    edges=linspace(0,4,17);
+    [num,~]=histcounts([condzbcpcell{:}],edges);
     num_all=num_all+num;
 end
-xlabel("R");
-ylabel("G(e^2/h)");
-histogram('BinEdges',edges,'BinCounts',num_all,'DisplayName',strcat('R>',num2str(crit)));
 
-savefig(strcat('R_vs_cond_R>',num2str(crit),'.fig'));
-saveas(fig,strcat('R_vs_cond_R>',num2str(crit),'.fig'));
+histogram('BinEdges',edges,'BinCounts',num_all,'Normalization','probability');
+title(strcat('R>',num2str(crit)));
+xlabel("G(e^2/h)");
+ylabel("Probability");
+savefig(strcat('R_vs_cond_R',num2str(crit),'.fig'));
+saveas(fig,strcat('R_vs_cond_R',num2str(crit),'.png'));
 % [xx,yy]=loaddata(1);
 
 function [rmap2,condzbcp2]=loaddata(index,crit)
@@ -46,4 +48,5 @@ rmap=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
 condzbcp=(rmap>crit).*(eigvalmap==1).*condmap;
 rmap2=nonzeros(rmap(rmap>crit));
 condzbcp2=nonzeros(condzbcp);
+end
 end
