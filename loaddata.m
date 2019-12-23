@@ -13,7 +13,6 @@ condmap=l1.condmap;
 eigvalmap=l2.eigvalmap;
 condmapL=condmap(:,:,1);
 condmapR=condmap(:,:,4);
-step=0.1;
 re.ZBCP=nnz(eigvalmap)/length(alpha1list)^2;
 re.cond10L=nnz(condmapL>1.8 & condmapL<2.2 )/length(alpha1list)^2;
 re.cond10R=nnz(condmapR>1.8 & condmapR<2.2 )/length(alpha1list)^2;
