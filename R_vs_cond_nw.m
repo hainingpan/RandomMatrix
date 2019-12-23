@@ -1,8 +1,9 @@
+function R_vs_cond_nw(t,L)
 ensemblesize=10000;
 % fig=figure;
-batchsize=1000;
-t=0;
-L=2;
+batchsize=100;
+% t=0;
+% L=2;
 for index=1:ensemblesize
     F(index)=parfeval(@loaddata,4,'./M80/N4/Gn0.1',t,L,index+0);
 end
@@ -70,4 +71,5 @@ rmapR=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
 condzbcpR=(rmapR>crit).*(eigvalmapR==1).*condmapR;
 rmapR=nonzeros(rmapR(rmapR>crit));
 condzbcpR=nonzeros(condzbcpR);
+end
 end

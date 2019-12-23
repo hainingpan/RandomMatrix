@@ -1,6 +1,7 @@
-ensemblesize=1000;
-t=1;
-L=10;
+function stat(t,L)
+ensemblesize=10000;
+% t=1;
+% L=10;
 batchsize=100;
 for index=1:ensemblesize
     F(index)=parfeval(@loaddata,1,'./M80/N4/Gn0.1',t,L,index+0);
@@ -68,3 +69,4 @@ ylabel('Probility');
 title(sprintf("t=%.2f,L=%d ZBCP statistics",t,L));
 saveas(fig4,sprintf("ZBCP_t%.2fL%d.png",t,L));
 savefig(fig4,sprintf("ZBCP_t%.2fL%d.fig",t,L));
+end
