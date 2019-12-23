@@ -4,6 +4,7 @@ ensemblesize=50000;
 batchsize=100;
 % crit=0;
 for index=1:ensemblesize
+    fprintf("%d\n",index);
     F(index)=parfeval(@loaddata,2,index+0,crit);
 end
 fig=figure();
