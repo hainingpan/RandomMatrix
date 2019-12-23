@@ -32,18 +32,18 @@ figure(figL);
 xlabel("R");
 ylabel("G(e^2/h)");
 title("Left");
-savefig(figL,sprintf("R_vs_cond_nwL_t%.2fL%d.fig",t,L));
+% savefig(figL,sprintf("R_vs_cond_nwL_t%.2fL%d.fig",t,L));
 saveas(figL,sprintf("R_vs_cond_nwL_t%.2fL%d.png",t,L));
 
 figure(figR);
 xlabel("R");
 ylabel("G(e^2/h)");
 title("Right");
-savefig(figR,sprintf("R_vs_cond_nwR_t%.2fL%d.fig",t,L));
+% savefig(figR,sprintf("R_vs_cond_nwR_t%.2fL%d.fig",t,L));
 saveas(figR,sprintf("R_vs_cond_nwR_t%.2fL%d.png",t,L));
 
 function [rmapL,rmapR,condzbcpL,condzbcpR]=loaddata(filedir,t,L,index)
-crit=0.00;
+crit=0.06;
 alpha1list=0:0.001:1;
 alpha2list=alpha1list;
 l1=load(strcat(filedir,sprintf('/condmapt%.2fL%d/condmapt%.2fL%d_',t,L,t,L),num2str(index),'.mat'));
