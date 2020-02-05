@@ -1,8 +1,8 @@
-L=10;
-[H1,W1]=hwg_nw(80,4,0.1,L,.1);
+L=2;
+[H1,W1]=hwg_nw(80,4,0.1,L,1);
 figure;
 hold on
-enlist=-1:1e-2:1;
+enlist=linspace(-1,1,1000);
 condlist=arrayfun(@(x) Gm(x,H1,W1),enlist,'UniformOutput',false); 
 condmat=cat(3,condlist{:});
 plot(enlist,squeeze(condmat(1,1,:)),'DisplayName','G_{LL}','Color','c');
