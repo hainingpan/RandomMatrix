@@ -6,10 +6,10 @@ JEvstlist=zeros(500,length(Llist));
 
 for j=1:length(Llist)
     parfor i=1:size(NMIvsLlist,1)
-        [NMIvstlist(i,j),JEvstlist(i,j)]=normalizedMI(80,4,0.1,Llist(j),t);
+        [NMIvsLlist(i,j),JEvsLlist(i,j)]=normalizedMI(80,4,0.1,Llist(j),t);
     end
 end
-save(strcat('t',num2str(t),'sweeptLMI.mat'),'NMIvsLlist','JEvstlist');
+save(strcat('t',num2str(t),'sweeptLMI.mat'),'NMIvsLlist','JEvsLlist');
 end
 
 function [MI,JE]=normalizedMI(m,n,gn,L,t)
