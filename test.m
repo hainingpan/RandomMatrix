@@ -1,4 +1,4 @@
-L=2;
+L=5;
 [H1,W1]=hwg_nw(80,4,0.1,L,1);
 figure;
 hold on
