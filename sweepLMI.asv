@@ -2,17 +2,17 @@ function sweepLMI(t)
 addpath('mi');
 Llist=2:20;
 NMIvsLlist=zeros(500,length(Llist));
-JEvstlist=zeros(500,length(Llist));
+JEvstlist=zeros(500,length(tlist));
 
 for j=1:length(Llist)
     parfor i=1:size(NMIvsLlist,1)
         [NMIvstlist(i,j),JEvstlist(i,j)]=normalizedMI(80,4,0.1,Llist(j),t);
     end
 end
-save(strcat('t',num2str(t),'sweeptLMI.mat'),'NMIvsLlist','JEvstlist');
+save(strcat('t',num2str(t),'sweeptLMI.mat'),'NMIvsLlist');
 end
 
-function [MI,JE]=normalizedMI(m,n,gn,L,t)
+function MI=normalizedMI(m,n,gn,L,t)
 [H1,W1]=hwg_nw(m,n,gn,L,t);
 enlist=linspace(-5,5,1000);
 condlist=arrayfun(@(x) Gm(x,H1,W1),enlist,'UniformOutput',false); 
@@ -22,7 +22,6 @@ gL=squeeze(condmat(1,1,:));
 gR=squeeze(condmat(2,2,:));
 
 MI=mutualinfo(gL,gR);
-JE=jointentropy(gL,gR);
 
 % gLs=sort(gL);
 % gRs=sort(gR);
