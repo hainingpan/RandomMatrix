@@ -1,8 +1,8 @@
 function sweeptMI(L)
 addpath('mi');
-tlist=-1:0.2:1;
-NMIvstlist=zeros(100,length(tlist));
-JEvstlist=zeros(100,length(tlist));
+tlist=-1:0.1:1;
+NMIvstlist=zeros(500,length(tlist));
+JEvstlist=zeros(500,length(tlist));
 
 for j=1:length(tlist)
     parfor i=1:size(NMIvstlist,1)
