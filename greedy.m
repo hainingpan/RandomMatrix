@@ -48,5 +48,3 @@ alphalisty=[prey,zbcpy];
 figure;scatter(stopx,stopy,'.');xlabel('\alpha_1');ylabel('\alpha_2');
 hold on;
 plot(alphalistx,alphalisty,'r')
-
-

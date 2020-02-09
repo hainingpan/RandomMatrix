@@ -4,7 +4,6 @@ function re=loaddata(filedir,t,L,index)
 %re.cor: correlation stat
 %conductance vs R stat
 
-addpath('mi');
 % crit=0;
 alpha1list=0:0.001:1;
 alpha2list=alpha1list;
@@ -37,6 +36,7 @@ re.edges=edges;
 % condzbcp2L=nonzeros(condzbcpL);
 % condzbcp2R=nonzeros(condzbcpR);
 
-re.mi=mutualinfo(condmapL(:),condmapR(:));
-re.je=jointentropy(condmapL(:),condmapR(:));
+re.mi=
+re.
+
 end

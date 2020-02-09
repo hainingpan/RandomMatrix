@@ -78,17 +78,7 @@ fig5=figure;
 histogram(miensemble,'Normalization','probability');
 xlabel('Fraction of the ZBCP');
 ylabel('Probility');
-title(sprintf("t=%.2f,L=%d Mutual information (mean=%f) statistics",t,L,mean(miensemble)));
-saveas(fig5,sprintf("MI_t%.2fL%d.png",t,L));
-savefig(fig5,sprintf("MI_t%.2fL%d.fig",t,L));
+title(sprintf("t=%.2f,L=%d Mutual information statistics",t,L));
 
-%Normalized mutual information
-fig6=figure;
-histogram(miensemble./jeensemble,'Normalization','probability');
-xlabel('Fraction of the ZBCP');
-ylabel('Probility');
-title(sprintf("t=%.2f,L=%d Normalized mutual information (mean=%f) statistics",t,L,mean(miensemble./jeensemble)));
-saveas(fig6,sprintf("NMI_t%.2fL%d.png",t,L));
-savefig(fig6,sprintf("NMI_t%.2fL%d.fig",t,L));
 
 end

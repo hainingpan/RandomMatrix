@@ -1,8 +1,8 @@
 %%straight line assign
-x1=0.4723;
-y1=0.7639;
-x2=0.3200;
-y2=0.9276;
+x1=0.3711;
+y1=0.5294;
+x2=0.3770;
+y2=0.6485;
 alphalistx=linspace(x1,x2,500)+0.0;
 alphalisty=linspace(y1,y2,500)+0.0;
 % k=(y2-y1)/(x2-x1);
@@ -26,7 +26,8 @@ alphalisty=linspace(y1,y2,500)+0.0;
 % alphalistx=polyval(f,alphalisty);
 
 %%straight line shift
-% alphalistx=alphalistx+0.01;
+% alphalistx=alphalistx-0.004;
+% alphalisty=alphalisty+0.02;
 
 
 % %%polynomial fit (x->y)
