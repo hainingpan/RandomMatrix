@@ -1,5 +1,4 @@
-L=2;
-[H1,W1]=hwg_nw(80,4,0.1,L,1);
+[H1,W1]=hwg_nc(80,4,.1);
 figure;
 hold on
 enlist=linspace(-1,1,1000);
@@ -10,7 +9,7 @@ plot(enlist,squeeze(condmat(1,2,:)),'DisplayName','G_{LR}','Color','r');
 plot(enlist,squeeze(condmat(2,1,:)),'DisplayName','G_{RL}','Color','k');
 plot(enlist,squeeze(condmat(2,2,:)),'DisplayName','G_{RR}','Color','b');
 cor=corrcoef([squeeze(condmat(1,1,:)),squeeze(condmat(2,2,:))]);
-title(sprintf('correlation=%.4f\nLength=%d',cor(1,2),L));
+title(sprintf('correlation=%.4f\n',cor(1,2)));
 xlabel('Energy');
 ylabel('$G(\frac{e^2}{h})$','Interpreter','latex');
 legend;
