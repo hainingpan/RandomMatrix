@@ -75,6 +75,6 @@ ylabel('\alpha_2');
 title(sprintf("fraction within 10%% of 2e^2/h: %0.3f",nnz(enmap0<2.2&enmap0>1.8)/length(enmap0)^2));
 % save(strrep(fn,'sweepalpha50','enmap_2_f'),'enmap','-v7.3');
 % save(strrep(fn,'sweepalpha50','enmap0_2_f'),'enmap0','-v7.3');
-save(strrep(fn,'sweepalpha','enmap0_3771_'),'enmap0','eigvalmap','H1','H2','H3','-v7.3');
+save(strrep(fn,'sweepalpha','enmap0_3771_'),'enmap0','eigvalmap','H1','H2','H3','W1','alpha1list','alpha2list','-v7.3');
 end
     

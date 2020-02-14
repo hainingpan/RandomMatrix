@@ -3,17 +3,17 @@
 % H2=H{31};
 % H3=H{33};
 
-ind=3771;
-H1=H{ind,1};
-H2=H{ind,2};
-H3=H{ind,3};
-W1=ww;
+% ind=3771;
+% H1=H{ind,1};
+% H2=H{ind,2};
+% H3=H{ind,3};
+% W1=ww;
 
 
 % alpha1list=0:0.005:1;
 % alpha2list=0:0.005:1;
 % enlist=-2:0.01:2;
-enlist=-2:.01:2;
+enlist=-.2:.001:.2;
 condmap0=zeros(length(alphalistx),length(enlist));
 eiglist=zeros(length(alphalistx),length(H1));
 % eigroot=zeros(length(alphalist),length(H1));
