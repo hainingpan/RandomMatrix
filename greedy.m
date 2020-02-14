@@ -1,6 +1,6 @@
-load('M80/N4/Gn0.1/enmap0_f.mat')
-alpha1list=0:0.001:1;
-alpha2list=0:0.001:1;
+% load('M80/N4/Gn0.1/enmap0_f.mat')
+alpha1list=0:0.01:1;
+alpha2list=0:0.01:1;
 figure;
 
 [matcont,valcont]=contour(alpha1list,alpha2list,enmap0',[2,6],'k');

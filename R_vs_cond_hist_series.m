@@ -1,17 +1,20 @@
-function R_vs_cond_hist(crit)
+function R_vs_cond_hist_series(crit)
 ensemblesize=10000;
 % fig=figure;
 batchsize=100;
 % crit=0;
-for index=1:ensemblesize
-    fprintf("%d\n",index);
-    F(index)=parfeval(@loaddata,2,index+0,crit);
-end
+% for index=1:ensemblesize
+%     fprintf("%d\n",index);
+%     F(index)=parfeval(@loaddata,2,index+0,crit);
+% end
+fig=figure();
 % fig=openfig('R_vs_cond.fig');
 num_all=0;
 for index=1:ensemblesize/batchsize
     for ii=1:batchsize
-        [~,rmap1,condzbcp1]=fetchNext(F);
+        i=(index-1)*batchsize+ii;
+        fprintf("%d\n",i);
+        [rmap1,condzbcp1]=loaddata(i,crit);
         rmapcell{ii}=rmap1';
         condzbcpcell{ii}=condzbcp1';
     end
@@ -22,7 +25,6 @@ for index=1:ensemblesize/batchsize
     [num,~]=histcounts([condzbcpcell{:}],edges);
     num_all=num_all+num;
 end
-fig=figure();
 
 histogram('BinEdges',edges,'BinCounts',num_all,'Normalization','probability');
 title(strcat('R>',num2str(crit)));

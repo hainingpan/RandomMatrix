@@ -1,7 +1,12 @@
-load('M80/N4/Gn0.1/sweepalpha50.mat','H','ww')
-H1=H{26};
-H2=H{31};
-H3=H{33};
+% load('M80/N4/Gn0.1/sweepalpha50.mat','H','ww')
+% H1=H{26};
+% H2=H{31};
+% H3=H{33};
+
+ind=3771;
+H1=H{ind,1};
+H2=H{ind,2};
+H3=H{ind,3};
 W1=ww;
 
 
