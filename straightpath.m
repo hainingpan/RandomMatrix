@@ -1,9 +1,9 @@
 %%straight line assign
-x1=0.6325;
-y1=0.5;
-x2=0.6325;
+x1=0.349;
+y1=0.472;
+x2=0.571;
 y2=0.43;
-alphalistx=linspace(x1,x2,500)-0.18;
+alphalistx=linspace(x1,x2,500)-0.0;
 alphalisty=linspace(y1,y2,500)+0.0;
 % k=(y2-y1)/(x2-x1);
 % l=@(x) k*(x-x1)+y1;

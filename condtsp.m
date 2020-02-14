@@ -49,8 +49,8 @@ end
 condmap0=real(condmap0);
 figure;
 surf(alphalength,enlist,condmap0','edgecolor','none');view(2)
-xlabel('distance of \alpha')
-ylabel('E/\delta_0')
+xlabel('distance of \alpha');
+ylabel('E/\delta_0');
 cb=colorbar;
 title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
 axis tight
