@@ -19,9 +19,9 @@ plot(alphalength,condmap0(:,201));xlabel('distance of \alpha');ylabel('G(e^2/h)'
 [~,I]=max(condmap0(:,201));
 hold on;
 line([alphalength(I),alphalength(I)],[0,4],'linestyle','--');
-saveas(fig1,'D:\CMTC\Rp_RM\Rp18\vbias_(',num2str(x1),',',num2str(y1),')-(',num2str(x2),',',num2str(y2),').png');
+saveas(fig1,strcat('D:\CMTC\Rp_RM\Rp18\vbias_(',num2str(x1),',',num2str(y1),')-(',num2str(x2),',',num2str(y2),').png'));
 
 fig2=figure;plot(enlist,condmap0(I,:));xlabel('v_{bias}=0');ylabel('G(e^2/h)');title('max peak');
 
-saveas(fig2,'D:\CMTC\Rp_RM\Rp18\vmax_(',num2str(x1),',',num2str(y1),')-(',num2str(x2),',',num2str(y2),').png');
+saveas(fig2,strcat('D:\CMTC\Rp_RM\Rp18\vmax_(',num2str(x1),',',num2str(y1),')-(',num2str(x2),',',num2str(y2),').png'));
 
