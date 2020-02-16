@@ -1,9 +1,8 @@
 fig0=figure;
 % surf(alpha1list,alpha2list,enmap0','edgecolor','none');view(2);
-surf(alpha1list,alpha2list,(enmap0.*((enmap0-enmapp)>0).*eigvalmap)','edgecolor','none');view(2)
+surf(alpha1list,alpha2list,(enmap0.*(enmap0-enmapp))','edgecolor','none');view(2)
 hold on
-contour3(alpha1list,alpha2list,enmap0'+10,[8,10.4],'r');
-contour3(alpha1list,alpha2list,enmap0'+10,[8,12],'k');
+contour3(alpha1list,alpha2list, enmap0'+10,[10,11,12],'k')
 caxis([0,4])
 cb=colorbar;
 title(cb,'$G(\frac{e^2}{h})$','Interpreter','latex')
