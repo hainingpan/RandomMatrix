@@ -41,7 +41,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("Left");
 axis tight;
-saveas(figL,sprintf("R_vs_cond_nwL_t%.2fL%d.png",t,L));
+saveas(figL,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_%d.png",t,L,start));
 
 figR=figure;
 surf(robustness,conductance,fR','edgecolor','none');
@@ -51,7 +51,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("Right");
 axis tight;
-saveas(figR,sprintf("R_vs_cond_nwR_t%.2fL%d.png",t,L));
+saveas(figR,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf_%d.png",t,L,start));
 
 figLlog=figure;
 surf(robustness,conductance,log(fL+1)','edgecolor','none');
@@ -61,7 +61,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("log(PDF+1) Left");
 axis tight;
-saveas(figLlog,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf.png",t,L));
+saveas(figLlog,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_log_%d.png",t,L,start));
 
 
 figRlog=figure;
@@ -72,7 +72,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("log(PDF+1) Right");
 axis tight;
-saveas(figRlog,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf.png",t,L));
+saveas(figRlog,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf_log_%d.png",t,L,start));
 
 
 save(sprintf("R_vs_cond_nw_t%.2fL%d.mat",t,L),'fL','fR','robustness','conductance');
