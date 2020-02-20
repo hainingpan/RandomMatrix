@@ -9,6 +9,11 @@ for index=1:ensemblesize
     F(index)=parfeval(@loaddata,4,'./M80/N4/Gn0.1',t,L,index+0);
 end
 
+rmapLcell=[];
+rmapRcell=[];
+condzbcpLcell=[];
+condzbcpRcell=[];
+
 for index=1:ensemblesize/batchsize
     for ii=1:batchsize
         [~,rmapL,rmapR,condzbcpL,condzbcpR]=fetchNext(F);
