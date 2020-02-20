@@ -1,4 +1,4 @@
-function R_vs_cond_nw_pdf(t,L)
+function R_vs_cond_nw_pdf(t,L,start)
 ensemblesize=1000;
 % fig=figure;
 batchsize=1000;
@@ -6,7 +6,7 @@ batchsize=1000;
 % L=2;
 for index=1:ensemblesize
     fprintf("%d\n",index);
-    F(index)=parfeval(@loaddata,4,'./M80/N4/Gn0.1',t,L,index+0);
+    F(index)=parfeval(@loaddata,4,'./M80/N4/Gn0.1',t,L,index+start);
 end
 
 rmapLcell=[];
