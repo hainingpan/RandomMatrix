@@ -1,8 +1,9 @@
-function R_vs_cond_pdf(start)
+function R_vs_cond_kde()
 ensemblesize=1000;
 batchsize=1000;
 for index=1:ensemblesize
-    F(index)=parfeval(@loaddata,2,index+start);
+    fprintf("%d\n",index);
+    F(index)=parfeval(@loaddata,2,index+0);
 end
 
 rmapcell=[];
@@ -21,13 +22,24 @@ figscatter=figure;
 scatter(rmapcell(:),condzbcpcell(:),0.1,'k','filled');
 xlabel("R");
 ylabel("G(e^2/h)");
-saveas(figscatter,sprintf('R_vs_cond_%d.png',start));
+saveas(figscatter,'R_vs_cond.png');
 
-robustness = linspace(0,max(max(rmapLcell),max(rmapRcell)),100);
-conductance = linspace(0,4,100);
-[robustnessgrid,conductancegrid]=ndgrid(robustness,conductance);
-xi=[robustnessgrid(:),conductancegrid(:)];
-f = mvksdensity([rmapcell;condzbcpcell]',xi,'Bandwidth',[0.01,0.1],'Kernel','normpdf','Support',[0,0;Inf,4]);
+% robustness = linspace(0,max(max(rmapLcell),max(rmapRcell)),100);
+% conductance = linspace(0,4,100);
+% [robustnessgrid,conductancegrid]=ndgrid(robustness,conductance);
+% xi=[robustnessgrid(:),conductancegrid(:)];
+% f = mvksdensity([rmapcell;condzbcpcell]',xi,'Bandwidth',[0.01,0.1],'Kernel','normpdf','Support',[0,0;Inf,4]);
+
+[bandwidth,f,X,Y]=kde2d([rmapcell;condzbcpcell]',128,[0,0],[max(max(rmapcell),max(rmapcell)),4]);
+
+fig=figure;
+surf(X,Y,f,'edgecolor','none');
+view(2);
+colorbar;
+xlabel("R");
+ylabel("G(e^2/h)");
+axis tight;
+saveas(fig,"R_vs_cond_pdf.png");
 
 
 end
