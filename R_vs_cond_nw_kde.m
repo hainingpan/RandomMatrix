@@ -37,7 +37,7 @@ end
 [bandwidthR,fR,XR,YR]=kde2d([rmapRcell;condzbcpRcell]',128,[0,0],[max(max(rmapLcell),max(rmapRcell)),4]);
 
 figL=figure;
-surf(XL,YL,fL','edgecolor','none');
+surf(XL,YL,fL,'edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
@@ -47,7 +47,7 @@ axis tight;
 saveas(figL,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf.png",t,L));
 
 figR=figure;
-surf(XR,YR,fR','edgecolor','none');
+surf(XR,YR,fR,'edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
@@ -57,7 +57,7 @@ axis tight;
 saveas(figR,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf.png",t,L));
 
 figLlog=figure;
-surf(XL,YL,log(fL+1)','edgecolor','none');
+surf(XL,YL,log(fL+1),'edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
@@ -68,7 +68,7 @@ saveas(figLlog,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_log.png",t,L));
 
 
 figRlog=figure;
-surf(XR,YR,log(fR+1)','edgecolor','none');
+surf(XR,YR,log(fR+1),'edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
