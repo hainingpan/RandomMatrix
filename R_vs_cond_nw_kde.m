@@ -44,7 +44,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("Left");
 axis tight;
-saveas(figL,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_%d.png",t,L,start));
+saveas(figL,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf.png",t,L));
 
 figR=figure;
 surf(XR,YR,fR','edgecolor','none');
@@ -54,7 +54,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("Right");
 axis tight;
-saveas(figR,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf_%d.png",t,L,start));
+saveas(figR,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf.png",t,L));
 
 figLlog=figure;
 surf(XL,YL,log(fL+1)','edgecolor','none');
@@ -64,7 +64,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("log(PDF+1) Left");
 axis tight;
-saveas(figLlog,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_log_%d.png",t,L,start));
+saveas(figLlog,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_log.png",t,L));
 
 
 figRlog=figure;
@@ -75,7 +75,7 @@ xlabel("R");
 ylabel("G(e^2/h)");
 title("log(PDF+1) Right");
 axis tight;
-saveas(figRlog,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf_log_%d.png",t,L,start));
+saveas(figRlog,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf_log.png",t,L));
 
 
 save(sprintf("R_vs_cond_nw_t%.2fL%d.mat",t,L),'fL','fR','XL','YL','XR','YR');
