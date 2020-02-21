@@ -4,6 +4,7 @@ ensemblesize=1000;
 batchsize=1000;
 % t=0;
 % L=2;
+addpath('kde2d');
 for index=1:ensemblesize
     fprintf("%d\n",index);
     F(index)=parfeval(@loaddata,4,'./M80/N4/Gn0.1',t,L,index+0);
