@@ -1,11 +1,12 @@
-function R_vs_cond_nc_kde()
-ensemblesize=99;
+function R_vs_cond_nw_kde(t,L,start)
+ensemblesize=1000;
 % fig=figure;
-batchsize=99;
-addpath('kde2d');
+batchsize=1000;
+% t=0;
+% L=2;
 for index=1:ensemblesize
     fprintf("%d\n",index);
-    F(index)=parfeval(@loaddata_nc,4,'./M80/N4/Gn0.1',index+0);
+    F(index)=parfeval(@loaddata,4,'./M80/N4/Gn0.1',t,L,index+start);
 end
 
 rmapLcell=[];
@@ -27,68 +28,65 @@ end
 % conductance = linspace(0,4,100);
 % [robustnessgrid,conductancegrid]=ndgrid(robustness,conductance);
 % xi=[robustnessgrid(:),conductancegrid(:)];
-% fL = mvksdensity([rmapLcell;condzbcpLcell]',xi,'Bandwidth',0.1,'Kernel','normpdf','Support',[0,0;Inf,4]);
-% fR = mvksdensity([rmapRcell;condzbcpRcell]',xi,'Bandwidth',0.1,'Kernel','normpdf','Support',[0,0;Inf,4]);
+% fL = mvksdensity([rmapLcell;condzbcpLcell]',xi,'Bandwidth',[0.01,0.1],'Kernel','normpdf','Support',[0,0;Inf,4]);
+% fR = mvksdensity([rmapRcell;condzbcpRcell]',xi,'Bandwidth',[0.01,0.1],'Kernel','normpdf','Support',[0,0;Inf,4]);
 % fL=reshape(fL,[100,100]);
 % fR=reshape(fR,[100,100]);
-
-
 [bandwidthL,fL,XL,YL]=kde2d([rmapLcell;condzbcpLcell]',128,[0,0],[max(max(rmapLcell),max(rmapRcell)),4]);
 [bandwidthR,fR,XR,YR]=kde2d([rmapRcell;condzbcpRcell]',128,[0,0],[max(max(rmapLcell),max(rmapRcell)),4]);
 
-
-
 figL=figure;
-surf(XL,YL,fL,'edgecolor','none');
+surf(XL,YL,fL','edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
 ylabel("G(e^2/h)");
-title("PDF Left");
+title("Left");
 axis tight;
-saveas(figL,'R_vs_cond_ncL_pdf.png');
-
+saveas(figL,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_%d.png",t,L,start));
 
 figR=figure;
-surf(XR,YR,fR,'edgecolor','none');
+surf(XR,YR,fR','edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
 ylabel("G(e^2/h)");
-title("PDF Right");
+title("Right");
 axis tight;
-saveas(figR,'R_vs_cond_ncR_pdf.png');
+saveas(figR,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf_%d.png",t,L,start));
 
 figLlog=figure;
-surf(XL,YL,log(fL+1),'edgecolor','none');
+surf(XL,YL,log(fL+1)','edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
 ylabel("G(e^2/h)");
 title("log(PDF+1) Left");
 axis tight;
-saveas(figLlog,'R_vs_cond_ncL_pdf_log.png');
+saveas(figLlog,sprintf("R_vs_cond_nwL_t%.2fL%d_pdf_log_%d.png",t,L,start));
 
 
 figRlog=figure;
-surf(XR,YR,log(fR+1),'edgecolor','none');
+surf(XR,YR,log(fR+1)','edgecolor','none');
 view(2);
 colorbar;
 xlabel("R");
 ylabel("G(e^2/h)");
 title("log(PDF+1) Right");
 axis tight;
-saveas(figRlog,'R_vs_cond_ncR_pdf_log.png');
-
-save('R_vs_cond_nc_pdf.mat','fL','fR','XL','XR','YL','YR');
+saveas(figRlog,sprintf("R_vs_cond_nwR_t%.2fL%d_pdf_log_%d.png",t,L,start));
 
 
-function [rmapL,rmapR,condzbcpL,condzbcpR]=loaddata_nc(filedir,index)
+save(sprintf("R_vs_cond_nw_t%.2fL%d.mat",t,L),'fL','fR','XL','YL','XR','YR');
+
+
+
+function [rmapL,rmapR,condzbcpL,condzbcpR]=loaddata(filedir,t,L,index)
 crit=0.00;
 alpha1list=0:0.001:1;
 alpha2list=alpha1list;
-l1=load(strcat(filedir,'/condmap_nc/condmap_nc_',num2str(index),'.mat'));
-l2=load(strcat(filedir,'/eigvalmap_nc/eigvalmap_nc_',num2str(index),'.mat'));
+l1=load(strcat(filedir,sprintf('/condmapt%.2fL%d/condmapt%.2fL%d_',t,L,t,L),num2str(index),'.mat'));
+l2=load(strcat(filedir,sprintf('/eigvalmapt%.2fL%d/eigvalmapt%.2fL%d_',t,L,t,L),num2str(index),'.mat'));
 condmap=l1.condmap;
 eigvalmap=l2.eigvalmap;
 condmapL=condmap(:,:,1);
@@ -101,8 +99,8 @@ eigvalmapR=eigvalmap.*(condmapL<=condmapR);
  [~,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
  d=tanh(d);  %scale to [0,1]
 rmapL=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
-condzbcpL=(rmapL>=crit).*(eigvalmapL==1).*condmapL;
-rmapL=nonzeros(rmapL(rmapL>=crit));
+condzbcpL=(rmapL>crit).*(eigvalmapL==1).*condmapL;
+rmapL=nonzeros(rmapL(rmapL>crit));
 condzbcpL=nonzeros(condzbcpL);
 
 [ilist,jlist,~]=find(eigvalmapR); % i is y-axis, j is x-axis
@@ -110,8 +108,8 @@ condzbcpL=nonzeros(condzbcpL);
  [~,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
  d=tanh(d);  %scale to [0,1]
 rmapR=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
-condzbcpR=(rmapR>=crit).*(eigvalmapR==1).*condmapR;
-rmapR=nonzeros(rmapR(rmapR>=crit));
+condzbcpR=(rmapR>crit).*(eigvalmapR==1).*condmapR;
+rmapR=nonzeros(rmapR(rmapR>crit));
 condzbcpR=nonzeros(condzbcpR);
 end
 end
