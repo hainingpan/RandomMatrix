@@ -5,7 +5,7 @@ batchsize=10000;
 addpath('kde2d');
 for index=1:ensemblesize
     fprintf("%d\n",index);
-    F(index)=parfeval(@loaddata_nc,4,'./M80/N4/Gn0.1',index+1000);
+    F(index)=parfeval(@loaddata_nc,4,'./M80/N4/Gn0.1',index+0000);
 end
 
 rmapLcell=[];
