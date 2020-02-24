@@ -1,7 +1,7 @@
 function R_vs_cond_nc_kde()
-ensemblesize=1000;
+ensemblesize=10000;
 % fig=figure;
-batchsize=1000;
+batchsize=10000;
 addpath('kde2d');
 for index=1:ensemblesize
     fprintf("%d\n",index);
