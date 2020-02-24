@@ -41,6 +41,17 @@ ylabel("G(e^2/h)");
 axis tight;
 saveas(fig,"R_vs_cond_pdf.png");
 
+fig=figure;
+surf(X,Y,log(f+1),'edgecolor','none');
+view(2);
+colorbar;
+xlabel("R");
+ylabel("G(e^2/h)");
+axis tight;
+title('log(PDF+1)');
+saveas(fig,"R_vs_cond_pdf_log.png");
+
+save('R_vs_cond_pdf.mat','f','X','Y');
 
 end
 

@@ -95,7 +95,7 @@ a= dct2d(initial_data);
  t_star=root(@(t)(t-evolve(t)),N);
 p_02=func([0,2],t_star);p_20=func([2,0],t_star); p_11=func([1,1],t_star);
 t_y=(p_02^(3/4)/(4*pi*N*p_20^(3/4)*(p_11+sqrt(p_20*p_02))))^(1/3);
-t_x=(p_20^(3/4)/(4*pi*N*p_02^(3/4)*(p_11+sqrt(p_20*p_02))))^(1/3)*100;
+t_x=(p_20^(3/4)/(4*pi*N*p_02^(3/4)*(p_11+sqrt(p_20*p_02))))^(1/3)*10;
 % smooth the discrete cosine transform of initial data using t_star
 a_t=exp(-(0:n-1)'.^2*pi^2*t_x/2)*exp(-(0:n-1).^2*pi^2*t_y/2).*a; 
 % now apply the inverse discrete cosine transform

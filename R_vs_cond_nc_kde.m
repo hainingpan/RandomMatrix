@@ -1,11 +1,11 @@
 function R_vs_cond_nc_kde()
-ensemblesize=99;
+ensemblesize=1000;
 % fig=figure;
-batchsize=99;
+batchsize=1000;
 addpath('kde2d');
 for index=1:ensemblesize
     fprintf("%d\n",index);
-    F(index)=parfeval(@loaddata_nc,4,'./M80/N4/Gn0.1',index+0);
+    F(index)=parfeval(@loaddata_nc,4,'./M80/N4/Gn0.1',index+1000);
 end
 
 rmapLcell=[];
