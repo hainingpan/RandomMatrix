@@ -37,7 +37,6 @@ set(cb,'YTick',[0,1])
 xlabel('\alpha_1');
 ylabel('\alpha_2');
 title(sprintf("non-quantized ZBCP fraction:%0.3f",nnz(eigmap)/length(eigmap)^2));
-
 save(strrep(fn,'sweepalpha','eig0_'),'eigmap','-v7.3');
 end
     
