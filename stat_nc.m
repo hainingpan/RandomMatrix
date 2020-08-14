@@ -74,7 +74,7 @@ savefig(fig4,"ZBCP_nc.fig");
 %Mutual information
 fig5=figure;
 histogram(miensemble,'Normalization','probability');
-xlabel('Fraction of the ZBCP');
+xlabel('Mutual information');
 ylabel('Probility');
 title(sprintf("Non-commutative lead: Mutual information (mean=%f) statistics",mean(miensemble)));
 saveas(fig5,"MI_nc.png");
@@ -83,7 +83,7 @@ savefig(fig5,"MI_nc.fig");
 %Normalized mutual information
 fig6=figure;
 histogram(miensemble./jeensemble,'Normalization','probability');
-xlabel('Fraction of the ZBCP');
+xlabel('Normalized mutual information');
 ylabel('Probility');
 title(sprintf("Non-commutative lead: Normalized mutual information (mean=%f) statistics",mean(miensemble./jeensemble)));
 saveas(fig6,"NMI_nc.png");
