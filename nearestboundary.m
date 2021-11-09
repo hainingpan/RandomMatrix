@@ -4,11 +4,11 @@ for index=1:ensemblesize
     if mod(index,10)==0
         disp(index)
     end
-    eigmap=eigval(:,:,indelx);
+    eigmap=eigval(:,:,index);
     [ilist,jlist,klist]=find(eigmap); % i is y-axis, j is x-axis
     [matcont,~]=contour(alpha1list,alpha2list,eigmap,[0.5,1.5],'k');
     [idx,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
-    d=tanh(d);  %scale to [0,1]
+    % d=tanh(d);  %scale to [0,1]
     rmap(:,:,index)=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
 end
 

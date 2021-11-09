@@ -57,7 +57,7 @@ eigvalmapR=eigvalmap.*(condmapL<=condmapR);
 [ilist,jlist,~]=find(eigvalmapL); % i is y-axis, j is x-axis
 [matcont,~]=contour(alpha1list,alpha2list,eigvalmapL,[0.5,1.5],'k');
  [~,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
- d=tanh(d);  %scale to [0,1]
+%  d=tanh(d);  %scale to [0,1]
 rmapL=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
 condzbcpL=(rmapL>crit).*(eigvalmapL==1).*condmapL;
 rmapL=nonzeros(rmapL(rmapL>crit));
@@ -66,7 +66,7 @@ condzbcpL=nonzeros(condzbcpL);
 [ilist,jlist,~]=find(eigvalmapR); % i is y-axis, j is x-axis
 [matcont,~]=contour(alpha1list,alpha2list,eigvalmapR,[0.5,1.5],'k');
  [~,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
- d=tanh(d);  %scale to [0,1]
+%  d=tanh(d);  %scale to [0,1]
 rmapR=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
 condzbcpR=(rmapR>crit).*(eigvalmapR==1).*condmapR;
 rmapR=nonzeros(rmapR(rmapR>crit));

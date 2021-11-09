@@ -21,7 +21,7 @@ parfor index=1:ensemblesize
     [ilist,jlist,klist]=find(eigvalmap); % i is y-axis, j is x-axis
     [matcont,~]=contour(alpha1list,alpha2list,eigvalmap,[0.5,1.5],'k');
      [idx,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
-     d=tanh(d);  %scale to [0,1]
+    %  d=tanh(d);  %scale to [0,1]
     rmap=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
     condzbcp=(rmap>crit).*(eigvalmap==1).*condmap;
     rmapnnz=nonzeros(rmap);
