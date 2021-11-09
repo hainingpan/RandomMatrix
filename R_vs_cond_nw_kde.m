@@ -1,5 +1,5 @@
 function R_vs_cond_nw_kde(t,L)
-ensemblesize=1000;
+ensemblesize=10000;
 % fig=figure;
 batchsize=1000;
 % t=0;
