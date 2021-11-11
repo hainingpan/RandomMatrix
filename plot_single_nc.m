@@ -1,7 +1,7 @@
 clear;
 close all;
 
-i=3;
+i=23;
 load(sprintf('./M80/N4/Gn0.1/condmap_nc/condmap_nc_%d.mat',i))
 load(sprintf('./M80/N4/Gn0.1/eigvalmap_nc/eigvalmap_nc_%d.mat',i))
 

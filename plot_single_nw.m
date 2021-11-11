@@ -2,14 +2,15 @@ clear;
 close all;
 
 t=1;
-L=5;
-load(sprintf('./M80/N4/Gn0.1/condmapt%.2fL%d_1.mat',t,L))
-load(sprintf('./M80/N4/Gn0.1/eigvalmapt%.2fL%d_1.mat',t,L))
+L=2;
+i=9;
+load(sprintf('./M80/N4/Gn0.1/condmapt%.2fL%d/condmapt%.2fL%d_%d.mat',t,L,t,L,i))
+load(sprintf('./M80/N4/Gn0.1/eigvalmapt%.2fL%d/eigvalmapt%.2fL%d_%d.mat',t,L,t,L,i))
 
 nnz(1.8<condmap(:,:,1) & condmap(:,:,1)<2.2)/length(condmap(:,:,1))^2;
 nnz(1.8<condmap(:,:,4) & condmap(:,:,4)<2.2)/length(condmap(:,:,4))^2;
-nnz(eigvalmap(:))/length(eigvalmap(:))
-corrcoef(condmap(:,:,1),condmap(:,:,4))
+nnz(eigvalmap(:))/length(eigvalmap(:));
+corrcoef(condmap(:,:,1),condmap(:,:,4));
 alpha1list=linspace(0,1,size(condmap,1));
 alpha2list=linspace(0,1,size(condmap,2));
 

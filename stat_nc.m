@@ -89,4 +89,5 @@ title(sprintf("Non-commutative lead: Normalized mutual information (mean=%f) sta
 saveas(fig6,"NMI_nc.png");
 savefig(fig6,"NMI_nc.fig");
 
+save('stat_nc.mat','batchsize','cond10Lensemble','cond10Rensemble','condLensemble','condRensemble','corensemble','edges','ensemblesize','jeensemble','miensemble','ZBCPensemble')
 end
