@@ -1,4 +1,4 @@
-function [condmap,eigvalmap]=sweepalpha_single(m,gamman,seed)
+function [condmap,eigvalmap,detSmap]=sweepalpha_single(m,gamman,seed)
 rng(seed);
 n=4;
 [H1,ww]=hwg(m,n,gamman);    
@@ -8,6 +8,7 @@ step=0.001;
 alpha1list=0:step:1;
 alpha2list=0:step:1;
 condmap=zeros(length(alpha1list));
+detSmap=zeros(length(alpha1list));
 eigvalmap=zeros(length(alpha1list));
 
 len1=length(alpha1list);
@@ -18,7 +19,7 @@ parfor alpha1index=1:len1
     for alpha2index=1:len2
         alpha2=alpha2list(alpha2index);
         hh=alpha1*H1+alpha2*H2+(1-alpha1-alpha2)*H3;
-        condmap(alpha1index,alpha2index)=G(0,hh,ww);
+        [condmap(alpha1index,alpha2index),detSmap(alpha1index,alpha2index)]=G(0,hh,ww);
         eigvalmap(alpha1index,alpha2index)=isimag(hh,ww);
     end
 end
@@ -38,4 +39,5 @@ end
 % end
 save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
 save(sprintf('M%d//N%d//Gn%1.1f//condmap%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//detSmap%d.mat',m,n,gamman,seed),'detSmap', '-v7.3');
 end

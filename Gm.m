@@ -1,4 +1,4 @@
-function [cond,Sm,S]=Gm(e,H,W)
+function [cond,Sm,S,detS1,detS2]=Gm(e,H,W)
 %conductance matrix dI_i/dV_j
 n=size(W,2);
 m=size(W,1);
@@ -20,4 +20,6 @@ cond(1,1)=n/4-trace(ree{1,1}*ree{1,1}')+trace(rhe{1,1}*rhe{1,1}');
 cond(1,2)=trace(ree{1,2}*ree{1,2}')-trace(rhe{1,2}*rhe{1,2}');
 cond(2,1)=trace(ree{2,1}*ree{2,1}')-trace(rhe{2,1}*rhe{2,1}');
 cond(2,2)=n/4-trace(ree{2,2}*ree{2,2}')+trace(rhe{2,2}*rhe{2,2}');
+detS1=det(S(1:4,1:4));
+detS2=det(S(5:8,5:8));
 end
