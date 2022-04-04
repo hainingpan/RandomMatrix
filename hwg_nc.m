@@ -20,11 +20,12 @@ H=(1i*(Arand-Arand.')/sqrt(2));  %test is sparse necessary?
 wn=sqrt(m*delta0/(pi^2*gamman)*(2-gamman-2*sqrt(1-gamman)));
 
 W1=spdiags(wn*ones(n,1),0,m,n);
-ranH=rand(size(W1,1));
+
+ranH=rand(size(W1,2));
 ranH=ranH+ranH';
 UR=expm(1i*ranH);
 % UR=exp(1i);
-W2=UR*W1;
+W2=W1*UR;
 W=[W1,W2];
 
 end
