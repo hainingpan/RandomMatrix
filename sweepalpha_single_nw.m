@@ -24,9 +24,9 @@ parfor alpha1index=1:len1
 %         fprintf("%d %d\n",alpha1index,alpha2index);
         alpha2=alpha2list(alpha2index);
         hh=alpha1*H1+alpha2*H2+(1-alpha1-alpha2)*H3;
-        [condmat,~,~,detS]=Gm(0,hh,ww);
+        [condmat,~,~,detS1,detS2]=Gm(0,hh,ww);        
         condmap(alpha1index,alpha2index,:)=condmat(:);
-        detSmap(alpha1index,alpha2index,:)=detS;
+        detSmap(alpha1index,alpha2index,:)=[detS1,detS2];
         [eigval,~,~,~]=isimag_benchmark(hh,ww,k);
         eigvalmap(alpha1index,alpha2index)=eigval;
 %         immap{alpha1index,alpha2index}=im.';
