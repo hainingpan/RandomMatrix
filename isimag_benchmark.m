@@ -4,6 +4,8 @@ function [flag,H,W,im]=isimag_benchmark(H,W,k)
 
 
 Heff=heff(H,W);
+Heff_r=max(abs(real(Heff)),[],'all');
+assert(Heff_r<1e-10,sprintf('H_eff %e is not purely imaginary',Heff_r))
 Heff_real=imag(Heff);
 cutoff=pi*W(1)^2;
 

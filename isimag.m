@@ -3,6 +3,8 @@ function [flag,H,W,im]=isimag(H,W)
 %then multiplied by a i to rotate the spectrum back.
 
 Heff=heff(H,W);
+Heff_r=max(abs(real(Heff)),[],'all');
+assert(Heff_r<1e-10,sprintf('H_eff %e is not purely imaginary',Heff_r))
 Heff_real=imag(Heff);
 
 eiglist=eig(Heff_real);
