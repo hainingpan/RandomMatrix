@@ -45,7 +45,7 @@ detSmap_err=max(abs(imag(detSmap)),[],'all');
 assert(detSmap_err<1e-7,sprintf('detS %e is not real',detSmap_err));
 detSmap=single(real(detSmap));
 
-save(sprintf('M%d//N%d//Gn%1.1f//ensemble%d.mat',m,n,gamman,seed),'eigvalmap','condmap','detSmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//ensemble_%d.mat',m,n,gamman,seed),'eigvalmap','condmap','detSmap', '-v7.3');
 
 % save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
 % save(sprintf('M%d//N%d//Gn%1.1f//condmap%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
