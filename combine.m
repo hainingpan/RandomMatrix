@@ -1,4 +1,5 @@
-filedir='d:\CMTC\Rp_RM\Rp20';
+% filedir='d:\CMTC\Rp_RM\Rp20';
+def combine(filedir)
 for seed=1:1000
     disp(seed)
     combine_(filedir,seed)
