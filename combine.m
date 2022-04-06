@@ -1,5 +1,6 @@
 filedir='d:\CMTC\Rp_RM\Rp20';
 for seed=1:1000
+    disp(seed)
     combine_(filedir,seed)
 end
 

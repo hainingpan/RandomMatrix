@@ -2,6 +2,7 @@ filedir='d:\CMTC\Rp_RM\Rp20';
 t=0;
 L=2;
 for seed=1:1000
+    disp(seed)
     combine_nw_(filedir,t,L,seed)
 end
 
