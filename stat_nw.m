@@ -1,8 +1,10 @@
-function stat_nc()
+function stat_nw(t,L)
 ensemblesize=1000;
+% t=1;
+% L=10;
 batchsize=100;
 for index=1:ensemblesize
-    F(index)=parfeval(@loaddata_nc,1,'./M80/N4/Gn0.1',index+0);
+    F(index)=parfeval(@loaddata,1,'./M80/N4/Gn0.1',t,L,index+0);
 end
 ZBCPensemble=zeros(length(ensemblesize),1);
 cond10Lensemble=zeros(length(ensemblesize),1);
@@ -33,21 +35,21 @@ fig1=figure;
 histogram('BinEdges',edges,'BinCounts',mean(condLensemble,1),'FaceColor','r','FaceAlpha',0.4,'DisplayName','G_{LL}');
 xlabel('$G(\frac{e^2}{h})$','Interpreter','latex');
 ylabel('Probility');
-title("Non-commutative lead: Conductance statistics");
+title(sprintf("t=%.2f,L=%d Conductance statistics",t,L));
 hold on;
 histogram('BinEdges',edges,'BinCounts',mean(condRensemble,1),'FaceColor','b','FaceAlpha',0.2,'DisplayName','G_{RR}');
 legend
-saveas(fig1,"cond_nc.png");
-savefig(fig1,"cond_nc.fig");
+saveas(fig1,sprintf("cond_t%.2fL%d.png",t,L));
+savefig(fig1,sprintf("cond_t%.2fL%d.fig",t,L));
 
 %Correlation 
 fig2=figure;
 histogram(corensemble,'Normalization','probability');
 xlabel('Correlation');
 ylabel('Probability');
-title("Non-commutative lead: Correlation statistics");
-saveas(fig2,"Cor_nc.png");
-savefig(fig2,"Cor_nc.fig");
+title(sprintf("t=%.2f,L=%d Correlation statistics",t,L));
+saveas(fig2,sprintf("Cor_t%.2fL%d.png",t,L));
+savefig(fig2,sprintf("Cor_t%.2fL%d.fig",t,L));
 
 
 %Conductance with 10%
@@ -57,37 +59,38 @@ hold on;
 histogram(cond10Rensemble,'Normalization','probability','FaceColor','b','FaceAlpha',0.2,'DisplayName','G_{RR}');
 xlabel('Fraction of the nearly quantized region');
 ylabel('Probility');
-title("Non-commutative lead: Conductance within 10%% of 2 e^2/h");
+title(sprintf("t=%.2f,L=%d Conductance within 10%% of 2 e^2/h",t,L));
 legend;
-saveas(fig3,"Cond10_nc.png");
-savefig(fig3,"Cond10_nc.fig");
+saveas(fig3,sprintf("Cond10_t%.2fL%d.png",t,L));
+savefig(fig3,sprintf("Cond10_t%.2fL%d.fig",t,L));
 
 %ZBCP
 fig4=figure;
 histogram(ZBCPensemble,'Normalization','probability');
 xlabel('Fraction of the ZBCP');
 ylabel('Probility');
-title("Non-commutative lead: ZBCP statistics");
-saveas(fig4,"ZBCP_nc.png");
-savefig(fig4,"ZBCP_nc.fig");
+title(sprintf("t=%.2f,L=%d ZBCP statistics",t,L));
+saveas(fig4,sprintf("ZBCP_t%.2fL%d.png",t,L));
+savefig(fig4,sprintf("ZBCP_t%.2fL%d.fig",t,L));
 
 %Mutual information
 fig5=figure;
 histogram(miensemble,'Normalization','probability');
 xlabel('Mutual information');
 ylabel('Probility');
-title(sprintf("Non-commutative lead: Mutual information (mean=%f) statistics",mean(miensemble)));
-saveas(fig5,"MI_nc.png");
-savefig(fig5,"MI_nc.fig");
+title(sprintf("t=%.2f,L=%d Mutual information (mean=%f) statistics",t,L,mean(miensemble)));
+saveas(fig5,sprintf("MI_t%.2fL%d.png",t,L));
+savefig(fig5,sprintf("MI_t%.2fL%d.fig",t,L));
 
 %Normalized mutual information
 fig6=figure;
 histogram(miensemble./jeensemble,'Normalization','probability');
 xlabel('Normalized mutual information');
 ylabel('Probility');
-title(sprintf("Non-commutative lead: Normalized mutual information (mean=%f) statistics",mean(miensemble./jeensemble)));
-saveas(fig6,"NMI_nc.png");
-savefig(fig6,"NMI_nc.fig");
+title(sprintf("t=%.2f,L=%d Normalized mutual information (mean=%f) statistics",t,L,mean(miensemble./jeensemble)));
+saveas(fig6,sprintf("NMI_t%.2fL%d.png",t,L));
+savefig(fig6,sprintf("NMI_t%.2fL%d.fig",t,L));
 
-save('stat_nc.mat','batchsize','cond10Lensemble','cond10Rensemble','condLensemble','condRensemble','corensemble','edges','ensemblesize','jeensemble','miensemble','ZBCPensemble')
+save(sprintf('stat_t%.2fL%d.mat',t,L),'batchsize','cond10Lensemble','cond10Rensemble','condLensemble','condRensemble','corensemble','edges','ensemblesize','jeensemble','miensemble','ZBCPensemble')
+
 end
