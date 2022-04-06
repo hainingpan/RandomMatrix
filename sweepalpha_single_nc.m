@@ -32,10 +32,17 @@ parfor alpha1index=1:len1
 %         immap{alpha1index,alpha2index}=im.';
     end
 end
+% downscale numeric type for efficiency of saving
+eigvalmap=logical(eigvalmap)
+condmap=single(condmap);
+detSmap_err=max(imag(detSmap),[],'all')
+assert(detSmap_err<1e-7,'detS %e is not real',detSmap_err);
+detSmap=single(real(detSmap));
 
-save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap_nc_%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
-save(sprintf('M%d//N%d//Gn%1.1f//condmap_nc_%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
-save(sprintf('M%d//N%d//Gn%1.1f//detSmap_nc_%d.mat',m,n,gamman,seed),'detSmap', '-v7.3');
+save(sprintf('M%d//N%d//Gn%1.1f//ensemble_nc_%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
+% save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap_nc_%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
+% save(sprintf('M%d//N%d//Gn%1.1f//condmap_nc_%d.mat',m,n,gamman,seed),'condmap', '-v7.3');
+% save(sprintf('M%d//N%d//Gn%1.1f//detSmap_nc_%d.mat',m,n,gamman,seed),'detSmap', '-v7.3');
 % save(sprintf('M%d//N%d//Gn%1.1f//imagmapt%.2fL%d_%d.mat',m,n,gamman,t0,L,seed),'imagmap', '-v7.3');
 
 % save(sprintf('M%d//N%d//Gn%1.1f//eigvalmap%d.mat',m,n,gamman,seed),'eigvalmap', '-v7.3');
