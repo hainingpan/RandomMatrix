@@ -24,8 +24,12 @@ W1=spdiags(wn*ones(n,1),0,m,n);
 ranH=rand(size(W1,2));
 ranH=ranH+ranH';
 UR=expm(1i*ranH);
-% UR=exp(1i);
+
+% UR=eye(4);
 W2=W1*UR;
+% W2=UR*W1;
+
+W2=circshift(W2,4);
 W=[W1,W2];
 
 end
