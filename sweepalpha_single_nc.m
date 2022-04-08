@@ -7,13 +7,14 @@ n=4;
 step=0.001;
 alpha1list=0:step:1;
 alpha2list=0:step:1;
-condmap=zeros(length(alpha1list),length(alpha1list),4); %GLL,GLR,GRL,GRR
-detSmap=zeros(length(alpha1list),length(alpha1list),2); % SL,SR
-eigvalmap=zeros(length(alpha1list));
 
 len1=length(alpha1list);
 len2=length(alpha2list);
 % immap=cell(length(alpha1list));
+
+condmap=zeros(len1,len2,4); %GLL,GLR,GRL,GRR
+detSmap=zeros(len1,len2,2); % SL,SR
+eigvalmap=zeros(len1,len2);
 
 k=3;
 parfor alpha1index=1:len1

@@ -7,12 +7,14 @@ n=4;
 step=0.001;
 alpha1list=0:step:1;
 alpha2list=0:step:1;
-condmap=zeros(length(alpha1list));
-detSmap=zeros(length(alpha1list));
-eigvalmap=zeros(length(alpha1list));
 
 len1=length(alpha1list);
 len2=length(alpha2list);
+
+condmap=zeros(len1,len2); 
+detSmap=zeros(len1,len2);
+eigvalmap=zeros(len1,len2);
+
 parfor alpha1index=1:len1
     alpha1=alpha1list(alpha1index);
     alpha2list=0:step:1;
