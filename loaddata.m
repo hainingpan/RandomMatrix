@@ -1,4 +1,4 @@
-function re=loaddata(filedir,t,L,index)
+function re=loaddata(filedir,index)
 %re.ZBCP:ZBCP fraction stat    
 %re.cond10L/R: conductance 10% fraction stat
 %re.cor: correlation stat
@@ -8,21 +8,23 @@ addpath('mi');
 % crit=0;
 alpha1list=0:0.001:1;
 alpha2list=alpha1list;
-l1=load(strcat(filedir,sprintf('/condmapt%.2fL%d/condmapt%.2fL%d_',t,L,t,L),num2str(index),'.mat'));
-l2=load(strcat(filedir,sprintf('/eigvalmapt%.2fL%d/eigvalmapt%.2fL%d_',t,L,t,L),num2str(index),'.mat'));
-condmap=l1.condmap;
-eigvalmap=l2.eigvalmap;
-condmapL=condmap(:,:,1);
-condmapR=condmap(:,:,4);
-re.ZBCP=nnz(eigvalmap)/length(alpha1list)^2;
-re.cond10L=nnz(condmapL>1.8 & condmapL<2.2 )/length(alpha1list)^2;
-re.cond10R=nnz(condmapR>1.8 & condmapR<2.2 )/length(alpha1list)^2;
-corrmat=corrcoef(condmapL(:),condmapR(:));
-re.cor=corrmat(1,2);
+% l1=load(strcat(filedir,'/condmap',num2str(index),'.mat'));
+% l2=load(strcat(filedir,'/eigvalmap',num2str(index),'.mat'));
+% l3=load(strcat(filedir,'/detSmap',num2str(index),'.mat'));
+% condmap=l1.condmap;
+% eigvalmap=l2.eigvalmap;
+% detSmap=l3.detSmap;
+data=load(sprintf('%s/ensemble_%d.mat',filedir,index));
+
+re.ZBCP=nnz(data.eigvalmap)/length(alpha1list)^2;
+re.cond10=nnz(condmap>1.8 & condmap<2.2 )/length(alpha1list)^2;
+% re.cond10R=nnz(condmapR>1.8 & condmapR<2.2 )/length(alpha1list)^2;
+% corrmat=corrcoef(condmapL(:),condmapR(:));
+% re.cor=corrmat(1,2);
 
 edges=linspace(0,4,21);
-re.condL=histcounts(condmapL(:),edges,'Normalization','probability');
-re.condR=histcounts(condmapR(:),edges,'Normalization','probability');
+re.cond=histcounts(condmap(:),edges,'Normalization','probability');
+% re.condR=histcounts(condmapR(:),edges,'Normalization','probability');
 re.edges=edges;
 % [ilist,jlist,~]=find(eigvalmap); % i is y-axis, j is x-axis
 % [matcont,~]=contour(alpha1list,alpha2list,eigvalmap,[0.5,1.5],'k');
@@ -37,6 +39,6 @@ re.edges=edges;
 % condzbcp2L=nonzeros(condzbcpL);
 % condzbcp2R=nonzeros(condzbcpR);
 
-re.mi=mutualinfo(condmapL(:),condmapR(:));
-re.je=jointentropy(condmapL(:),condmapR(:));
+% re.mi=mutualinfo(condmapL(:),condmapR(:));
+% re.je=jointentropy(condmapL(:),condmapR(:));
 end
