@@ -6,26 +6,38 @@ function re=loaddata_nw(filedir,t,L,index)
 
 addpath('mi');
 % crit=0;
-alpha1list=0:0.001:1;
-alpha2list=alpha1list;
-l1=load(strcat(filedir,sprintf('/condmapt%.2fL%d_',t,L),num2str(index),'.mat'));
-l2=load(strcat(filedir,sprintf('/eigvalmapt%.2fL%d_',t,L),num2str(index),'.mat'));
-l3=load(strcat(filedir,sprintf('/detSmapt%.2fL%d_',t,L),num2str(index),'.mat'));
-condmap=l1.condmap;
-eigvalmap=l2.eigvalmap;
-detSmap=l3.detSmap;
+% alpha1list=0:0.001:1;
+% alpha2list=alpha1list;
+% l1=load(strcat(filedir,sprintf('/condmapt%.2fL%d_',t,L),num2str(index),'.mat'));
+% l2=load(strcat(filedir,sprintf('/eigvalmapt%.2fL%d_',t,L),num2str(index),'.mat'));
+% l3=load(strcat(filedir,sprintf('/detSmapt%.2fL%d_',t,L),num2str(index),'.mat'));
+data=load(sprintf('%s/ensemble_t%.2fL%d_%d.mat',filedir,t,L,index));
+
+condmap=data.condmap;
+% eigvalmap=data.eigvalmap;
+detSmap=data.detSmap;
 condmapL=condmap(:,:,1);
 condmapR=condmap(:,:,4);
-re.ZBCP=nnz(eigvalmap)/length(alpha1list)^2;
-re.cond10L=nnz(condmapL>1.8 & condmapL<2.2 )/length(alpha1list)^2;
-re.cond10R=nnz(condmapR>1.8 & condmapR<2.2 )/length(alpha1list)^2;
-corrmat=corrcoef(condmapL(:),condmapR(:));
-re.cor=corrmat(1,2);
+detSmapL=detSmap(:,:,1);
 
-edges=linspace(0,4,21);
-re.condL=histcounts(condmapL(:),edges,'Normalization','probability');
-re.condR=histcounts(condmapR(:),edges,'Normalization','probability');
-re.edges=edges;
+topo_crit=-0.95;
+topo_index=(detSmapL<topo_crit);
+trivial_index=(detSmapL>topo_crit);
+
+re.topo=sum(topo_index,'all');
+re.trivial=sum(trivial_index,'all');
+
+% re.ZBCP=nnz(eigvalmap)/length(alpha1list)^2;
+% re.cond10L=nnz(condmapL>1.8 & condmapL<2.2 )/length(alpha1list)^2;
+% re.cond10R=nnz(condmapR>1.8 & condmapR<2.2 )/length(alpha1list)^2;
+% corrmat=corrcoef(condmapL(:),condmapR(:));
+% re.cor=corrmat(1,2);
+
+% edges=linspace(0,4,21);
+% re.condL=histcounts(condmapL(:),edges,'Normalization','probability');
+% re.condR=histcounts(condmapR(:),edges,'Normalization','probability');
+% re.edges=edges;
+
 % [ilist,jlist,~]=find(eigvalmap); % i is y-axis, j is x-axis
 % [matcont,~]=contour(alpha1list,alpha2list,eigvalmap,[0.5,1.5],'k');
 %  [~,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
@@ -39,6 +51,25 @@ re.edges=edges;
 % condzbcp2L=nonzeros(condzbcpL);
 % condzbcp2R=nonzeros(condzbcpR);
 
-re.mi=mutualinfo(condmapL(:),condmapR(:));
-re.je=jointentropy(condmapL(:),condmapR(:));
+condmapL_topo=condmapL(topo_index);
+condmapL_trivial=condmapL(trivial_index);
+condmapR_topo=condmapR(topo_index);
+condmapR_trivial=condmapR(trivial_index);
+
+if re.topo>0
+    re.mi_topo=mutualinfo(double(condmapL_topo),double(condmapR_topo));
+    re.je_topo=jointentropy(double(condmapL_topo),double(condmapR_topo));
+else
+    re.mi_topo=nan;
+    re.je_topo=nan;
+end
+
+if re.trivial>0
+    re.mi_trivial=mutualinfo(double(condmapL_trivial),double(condmapR_trivial));
+    re.je_trivial=jointentropy(double(condmapL_trivial),double(condmapR_trivial));
+else
+    re.mi_trivial=nan;
+    re.je_trivial=nan;
+end
+
 end

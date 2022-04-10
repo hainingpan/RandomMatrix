@@ -4,7 +4,7 @@ ensemblesize=1000;
 % L=10;
 batchsize=100;
 for index=1:ensemblesize
-    F(index)=parfeval(@loaddata_rm,1,'./M80/N4/Gn0.1',index+0);
+    F(index)=parfeval(@loaddata,1,'./M80/N4/Gn0.1',index+0);
 end
 ZBCPensemble=zeros(length(ensemblesize),1);
 cond10ensemble=zeros(length(ensemblesize),1);
