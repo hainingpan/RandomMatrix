@@ -1,9 +1,10 @@
 function stat_nw(dir,t,L)
 % dir='./M80/N4/Gn0.1'
-ensemblesize=1000;
+fn=ls(sprintf('%s/ensemble_t%.2fL%d_*.mat',dir,t,L));
+ensemblesize=size(fn,1);
 % t=1;
 % L=10;
-batchsize=100;
+batchsize=min(100,ensemblesize);
 for index=1:ensemblesize
     F(index)=parfeval(@loaddata_nw,1,dir,t,L,index+0);
 end
