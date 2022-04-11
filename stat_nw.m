@@ -1,12 +1,12 @@
-function stat_nw(dir,t,L)
-% dir='./M80/N4/Gn0.1'
-fn=ls(sprintf('%s/ensemble_t%.2fL%d_*.mat',dir,t,L));
+function stat_nw(directory,t,L)
+% directory='./M80/N4/Gn0.1'
+fn=dir(sprintf('%s/ensemble_t%.2fL%d_*.mat',directory,t,L));
 ensemblesize=size(fn,1);
 % t=1;
 % L=10;
 batchsize=min(100,ensemblesize);
 for index=1:ensemblesize
-    F(index)=parfeval(@loaddata_nw,1,dir,t,L,index+0);
+    F(index)=parfeval(@loaddata_nw,1,directory,t,L,index+0);
 end
 % ZBCPensemble=zeros(length(ensemblesize),1);
 % cond10Lensemble=zeros(length(ensemblesize),1);
@@ -16,9 +16,11 @@ end
 % condRensemble=zeros(length(ensemblesize),20);
 
 mi_topo_ensemble=zeros(length(ensemblesize),1);
-mi_topo_ensemble=zeros(length(ensemblesize),1);
+je_topo_ensemble=zeros(length(ensemblesize),1);
+mi_trivial_ensemble=zeros(length(ensemblesize),1);
 je_trivial_ensemble=zeros(length(ensemblesize),1);
-je_trivial_ensemble=zeros(length(ensemblesize),1);
+topo_ensemble=zeros(length(ensemblesize),1);
+trivial_ensemble=zeros(length(ensemblesize),1);
 for index=1:ensemblesize/batchsize
     for ii=1:batchsize
         [idx,re]=fetchNext(F);
