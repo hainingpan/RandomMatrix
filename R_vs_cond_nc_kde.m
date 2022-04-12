@@ -1,11 +1,12 @@
-function R_vs_cond_nc_kde()
+function R_vs_cond_nc_kde(filedir)
 ensemblesize=1000;
 % fig=figure;
 batchsize=100;
 addpath('kde2d');
+% filedir='./M80/N4/Gn0.1';
 for index=1:ensemblesize
     fprintf("%d\n",index);
-    F(index)=parfeval(@loaddata_nc,1,'./M80/N4/Gn0.1',index+0000);
+    F(index)=parfeval(@loaddata_nc,1,filedir,index+0000);
 end
 
 rmap_topo=[];
