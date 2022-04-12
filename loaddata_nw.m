@@ -22,7 +22,7 @@ detSmapL=detSmap(:,:,1);
 
 topo_crit=-0.95;
 topo_index=(detSmapL<topo_crit);
-trivial_index=(detSmapL>topo_crit);
+trivial_index=(detSmapL>=topo_crit);
 
 re.topo=sum(topo_index,'all');
 re.trivial=sum(trivial_index,'all');

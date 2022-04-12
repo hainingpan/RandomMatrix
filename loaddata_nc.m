@@ -21,7 +21,7 @@ detSmapL=detSmap(:,:,1);
 
 topo_crit=-0.95;
 topo_index=(detSmapL<topo_crit);
-trivial_index=(detSmapL>topo_crit);
+trivial_index=(detSmapL>=topo_crit);
 
 re.topo=sum(topo_index,'all');
 re.trivial=sum(trivial_index,'all');
@@ -39,13 +39,13 @@ re.trivial=sum(trivial_index,'all');
 
 % [ilist,jlist,~]=find(eigvalmap); % i is y-axis, j is x-axis
 % [matcont,~]=contour(alpha1list,alpha2list,eigvalmap,[0.5,1.5],'k');
-%  [~,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
-%  d=tanh(d);  %scale to [0,1]
+% [~,d]=knnsearch(matcont',[alpha1list(jlist);alpha2list(ilist)]');
+% % d=tanh(d);  %scale to [0,1]
 % rmap=sparse(ilist,jlist,d,length(alpha1list),length(alpha2list));
-% 
+
 % condzbcpL=(rmap>crit).*(eigvalmap==1).*condmapL;
 % condzbcpR=(rmap>crit).*(eigvalmap==1).*condmapR;
-% 
+
 % rmap2=nonzeros(rmap(rmap>crit));
 % condzbcp2L=nonzeros(condzbcpL);
 % condzbcp2R=nonzeros(condzbcpR);
