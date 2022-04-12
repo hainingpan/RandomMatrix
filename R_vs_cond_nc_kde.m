@@ -27,7 +27,8 @@ for index=1:ensemblesize/batchsize
     end
     fprintf("%f\r\n",index/ensemblesize*batchsize);   
 end
-if length(rmap_topo)>0
+len_topo=length(rmap_topo);
+if len_topo>0
     [bandwidth_topo_L,pdf_topo_L,rmap_topo_L,cond_topo_L]=kde2d([rmap_topo;condzbcpL_topo]',128,[0,0],[max(rmap_topo),4]);
     [bandwidth_topo_R,pdf_topo_R,rmap_topo_R,cond_topo_R]=kde2d([rmap_topo;condzbcpR_topo]',128,[0,0],[max(rmap_topo),4]);
 else
@@ -38,8 +39,8 @@ else
     rmap_topo_R=nan;
     cond_topo_R=nan;
 end
-
-if length(rmap_trivial)>0
+len_trivial=length(rmap_trivial);
+if len_trivial>0
     [bandwidth_trivial_L,pdf_trivial_L,rmap_trivial_L,cond_trivial_L]=kde2d([rmap_trivial;condzbcpL_trivial]',128,[0,0],[max(rmap_trivial),4]);
     [bandwidth_trivial_R,pdf_trivial_R,rmap_trivial_R,cond_trivial_R]=kde2d([rmap_trivial;condzbcpR_trivial]',128,[0,0],[max(rmap_trivial),4]);
 else
@@ -92,7 +93,7 @@ end
 % axis tight;
 % saveas(figRlog,'R_vs_cond_ncR_pdf_log.png');
 
-save('R_vs_cond_nc_pdf.mat','pdf_topo_L','pdf_topo_R','rmap_topo_L','rmap_topo_R','cond_topo_L','cond_topo_R','pdf_trivial_L','pdf_trivial_R','rmap_trivial_L','rmap_trivial_R','cond_trivial_L','cond_trivial_R');
+save('R_vs_cond_nc_pdf.mat','pdf_topo_L','pdf_topo_R','rmap_topo_L','rmap_topo_R','cond_topo_L','cond_topo_R','pdf_trivial_L','pdf_trivial_R','rmap_trivial_L','rmap_trivial_R','cond_trivial_L','cond_trivial_R','len_topo','len_trivial');
 
 
 function re=loaddata_nc(filedir,index)
