@@ -1,9 +1,10 @@
 function [condmap,eigvalmap,detSmap]=sweepalpha_single_nc(m,gamman,seed)
 rng(seed);
 n=4;
-[H1,ww]=hwg_nc(m,n,gamman);    
+[H1,~]=hwg_nc(m,n,gamman);    
 [H2,~]=hwg_nc(m,n,gamman);    
 [H3,~]=hwg_nc(m,n,gamman);  
+[~,ww]=hwg_nc_spec(m,n,gamman);  
 step=0.001;
 alpha1list=0:step:1;
 alpha2list=0:step:1;

@@ -21,14 +21,19 @@ wn=sqrt(m*delta0/(pi^2*gamman)*(2-gamman-2*sqrt(1-gamman)));
 
 W1=spdiags(wn*ones(n,1),0,m,n);
 
-ranH=rand(size(W1,2));
-ranH=ranH+ranH';    % for historic reason to ensure seed reproducibility
+ranH=rand(size(W1,2)); % for historic reason to ensure seed reproducibility
+% ranH=rand(size(W1,1));
+% ranH=ranH+ranH';    
 % UR=expm(1i*ranH);
+
+% ranH=ranH-ranH';
+% OR=expm(ranH);
 
 % UR=eye(4);
  W2=W1;
 % W2=W1*UR;
 % W2=UR*W1;
+% W2=OR*W1;
 
 W2=circshift(W2,4);
 W=[W1,W2];
