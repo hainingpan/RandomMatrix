@@ -2,7 +2,7 @@ function [H,W]=hwg_nc_spec(m,n,gamman)
 %nc for non-commute W_L and W_R
 %output H in Majorana basis
 
-% This weird function is only used for historic reason to ensure seed
+% This weird function is only used for historic reasons to ensure seed
 % reproducibility. 
 H=0;
 delta0=1;
