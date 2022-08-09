@@ -1,7 +1,7 @@
 function [condmap,eigvalmap,detSmap]=sweepalpha_single_nw_T(m,gamman,L,t0,seed)
 % sweep for thermal conductance
 rng(seed);
-n=4;
+n=20;
 [H1,ww]=hwg_nw(m,n,gamman,L,t0);
 % [H1,ww]=hwg_nw_asymm(m,n,gamman,L,t0);    
 [H2,~]=hwg_nw(m,n,gamman,L,t0);    
@@ -17,7 +17,7 @@ len2=length(alpha2list);
 condmap=zeros(len1,len2); %GLL,GLR,GRL,GRR
 % eigvalmap=zeros(len1,len2);
 
-k=optimalk(t0,L);
+% k=optimalk(t0,L);
 parfor alpha1index=1:len1
     warning('off','all');
     alpha1=alpha1list(alpha1index);
